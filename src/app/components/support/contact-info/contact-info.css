@@ -1,0 +1,30 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.contact-info-container {
+  padding: 20px;
+}
+
+.contact-info-container h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #000;
+  border: none !important;
+  padding-bottom: 0;
+}
+
+.info-item {
+  margin-bottom: 20px;
+}
+
+.map-container {
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.map-container iframe {
+  display: block;
+  border-radius: 0;
+}

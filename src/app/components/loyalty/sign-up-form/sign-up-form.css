@@ -1,0 +1,67 @@
+.signup-card-container {
+  max-width: 750px;
+  padding: 3rem;
+  background-color: #ffffff;
+}
+
+.form-title {
+  font-size: 1.5rem;
+  letter-spacing: 1px;
+  color: #111111;
+}
+
+.form-subtitle {
+  font-size: 0.95rem;
+}
+
+.tracking-wider {
+  letter-spacing: 1px !important;
+}
+
+.form-label {
+  font-size: 0.75rem;
+  color: #333333;
+}
+
+.form-input {
+  height: 48px;
+  border: 1px solid #ced4da;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  color: #111111;
+  transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.form-input:focus {
+  border-color: #b85a67;
+  box-shadow: 0 0 0 3px rgba(184, 90, 103, 0.15);
+  outline: none;
+}
+
+.btn-submit-loyalty {
+  background-color: #111111;
+  color: #ffffff;
+  border: 1px solid #111111;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  letter-spacing: 1.5px;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-submit-loyalty:hover:not(:disabled) {
+  background-color: #b85a67;
+  border-color: #b85a67;
+  color: #ffffff;
+}
+
+.form-disabled {
+  opacity: 0.45;
+  pointer-events: none;
+  user-select: none;
+}
+
+@media (max-width: 768px) {
+  .signup-card-container {
+    padding: 1.75rem;
+  }
+}

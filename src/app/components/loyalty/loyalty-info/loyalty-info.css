@@ -1,0 +1,56 @@
+.loyalty-info-wrapper {
+  padding-right: 15px;
+}
+
+.loyalty-eyebrow {
+  font-size: 0.85rem;
+  letter-spacing: 3px;
+  font-weight: 600;
+  color: #b85a67;
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+.loyalty-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #111111;
+  margin-bottom: 1.25rem;
+}
+
+.loyalty-subtitle {
+  font-size: 1.05rem;
+  color: #555555;
+  line-height: 1.6;
+}
+
+.icon-box {
+  width: 48px;
+  height: 48px;
+  background-color: #fdf5f6;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.perk-icon {
+  font-size: 1.35rem;
+  color: #b85a67;
+}
+
+.perk-title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #111111;
+}
+
+.perk-desc {
+  color: #666666;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 768px) {
+  .loyalty-title {
+    font-size: 2rem;
+  }
+}

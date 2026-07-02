@@ -1,0 +1,53 @@
+<div class="contact-form-container">
+  <h2>Create new Support Request</h2>
+
+  <form (ngSubmit)="onSubmit()" #supportForm="ngForm">
+    <div class="row">
+      <div class="col">
+        <label>First Name</label>
+        <input type="text" class="form-control" [(ngModel)]="formData.firstName" name="firstName" required>
+      </div>
+      <div class="col">
+        <label>Last Name</label>
+        <input type="text" class="form-control" [(ngModel)]="formData.lastName" name="lastName" required>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col">
+        <label>Email Address</label>
+        <input type="email" class="form-control" [(ngModel)]="formData.email" name="email" required>
+      </div>
+      <div class="col">
+        <label>Phone Number</label>
+        <input type="tel" class="form-control" [(ngModel)]="formData.phone" name="phone" required>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Support Case</label>
+      <select class="form-control" [(ngModel)]="formData.topic" name="topic" (change)="onTopicChange($event)" required>
+        <option value="" disabled>Select a case</option>
+        <option *ngFor="let topic of supportTopics" [value]="topic">{{ topic }}</option>
+      </select>
+    </div>
+
+    <div class="form-group" *ngIf="showOtherField">
+      <label>Specify Your Issue</label>
+      <input type="text" class="form-control" [(ngModel)]="formData.otherSpecify" name="otherSpecify" [required]="showOtherField">
+    </div>
+    
+    <div class="form-group">
+      <label>Message</label>
+      <textarea class="form-control" rows="8" [(ngModel)]="formData.message" name="message" required></textarea>
+    </div>
+
+    <div *ngIf="isSubmitted" class="success-alert">
+      <i class="bi bi-check-circle-fill"></i> Message sent successfully!
+    </div>
+
+    <button type="submit" class="btn-submit" [disabled]="!supportForm.valid || isSubmitted">
+      Submit Request
+    </button>
+  </form>
+</div>

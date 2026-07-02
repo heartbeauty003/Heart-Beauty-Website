@@ -1,0 +1,109 @@
+.auth-forced-card {
+  background-color: #ffffff !important;
+  width: 100%;
+  max-width: 560px;
+  border-radius: 6px !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03) !important;
+  box-sizing: border-box;
+}
+
+.auth-brand-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.auth-business-logo {
+  max-width: 160px;
+  height: auto;
+  object-fit: contain;
+}
+
+.btn-close-auth {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #adb5bd;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  padding: 0;
+  line-height: 1;
+  z-index: 15;
+}
+.btn-close-auth:hover { color: #212529; }
+
+.social-btn {
+  border: 1px solid #e2e8f0 !important;
+  background-color: #ffffff;
+  transition: all 0.2s;
+  height: 48px;
+  border-radius: 6px;
+  color: #495057;
+  font-size: 13px;
+  font-weight: 500;
+}
+.social-btn:hover { background-color: #f8f9fa !important; border-color: #0b79bf !important; }
+
+hr { border-top: 1px solid #e2e8f0; opacity: 1; }
+.bg-white.px-3 { z-index: 2; color: #777777; font-weight: 500; }
+
+.form-floating > .form-control { border-radius: 0; padding: 1rem 0 0 0; font-size: 1rem; background-color: transparent !important; }
+.form-floating > label { padding-left: 0; color: #6c757d; }
+.form-floating > .form-control:focus { box-shadow: none; border-bottom: 2px solid #0b79bf !important; }
+
+.password-toggle { cursor: pointer; z-index: 10; font-size: 1.2rem; color: #6c757d; }
+
+.auth-error-msg {
+  color: #d93025;
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-bottom: 15px;
+  padding: 8px 0;
+}
+
+.btn-continue {
+  background-color: #8cc4e6 !important;
+  border: none !important;
+  color: white;
+  font-weight: bold;
+  cursor: not-allowed;
+  transition: 0.3s;
+}
+.btn-continue.active { background-color: #0b79bf !important; cursor: pointer; }
+.btn-continue.active:hover { filter: brightness(1.1); }
+
+.country-code-select {
+  cursor: pointer;
+  background-color: transparent !important;
+}
+
+/* Used on the "check your inbox" screen — envelope icon */
+.success-icon-circle {
+  width: 60px;
+  height: 60px;
+  background-color: #e8f3fb;
+  color: #0b79bf;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.75rem;
+  margin: 0 auto;
+}
+
+a { text-decoration: none; color: #0b79bf; }
+
+.login-spinner-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(255, 255, 255, 0.85);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+}

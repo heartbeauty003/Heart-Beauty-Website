@@ -1,0 +1,13 @@
+:host {
+  display: block !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Base styling container layout for the core home view details */
+.home-content-container {
+  width: 100%;
+  padding: 40px 20px;
+  background-color: #ffffff;
+}

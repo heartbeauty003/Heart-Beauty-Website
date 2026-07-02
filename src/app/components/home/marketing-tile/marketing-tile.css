@@ -1,0 +1,162 @@
+:host {
+  display: block;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.marketing-tile-container {
+  position: relative;
+}
+
+/* Elegant divider line now safely contained away from viewport edges */
+.top-border-line {
+  width: 100%;
+  height: 1px;
+  background-color: #e5e5e5;
+}
+
+/* --- BALANCED VISUAL IMAGE HOUSING SYSTEM --- */
+.marketing-image-wrapper {
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 10px 15px 20px; /* Room for the flat offset shadow */
+}
+
+/* New Editorial 2D Frame Style */
+.editorial-frame {
+  position: relative;
+  background-color: #ffffff;
+  padding: 12px; /* Creates the white matte border */
+  border: 1px solid #e0e0e0;
+  /* Solid 2D block shadow updated to Heart Beauty Gold */
+  box-shadow: -15px 15px 0px #c5a059; 
+}
+
+/* Accent corner linking to your button's hover color */
+.editorial-frame::after {
+  content: '';
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  width: 40px;
+  height: 40px;
+  border-top: 3px solid #b85a67;
+  border-right: 3px solid #b85a67;
+  z-index: 2;
+}
+
+.marketing-img {
+  width: 100%;
+  height: auto; /* Keeps the image whole and uncropped */
+  display: block;
+}
+
+/* --- TEXT LAYOUT STRUCTURAL MATRIX (DESKTOP) --- */
+.marketing-text-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-left: 5%; /* Clean asymmetric alignment spacing on desktop viewports */
+  text-align: left;
+}
+
+.marketing-overline {
+  font-size: 1.25rem;
+  letter-spacing: 1.2px;
+  color: #000000;
+  font-weight: 500;
+}
+
+.marketing-heading {
+  font-size: 2.15rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #111111;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.marketing-description {
+  font-size: 0.95rem;
+  color: #333333;
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+/* --- PRIMARY INTERACTION BUTTON SYSTEM --- */
+.marketing-action-wrapper {
+  display: block;
+}
+
+.btn-marketing-action {
+  background-color: #000000;
+  color: #ffffff;
+  border: 1px solid #000000;
+  padding: 12px 36px;
+  font-size: 0.8rem;
+  letter-spacing: 1.5px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Updated hover behavior to use your exact hex color code */
+.btn-marketing-action:hover {
+  background-color: #b85a67;
+  color: #ffffff;
+  border-color: #b85a67;
+}
+
+/* --- RESPONSIBLE MOBILE CONVERSIONS --- */
+@media (max-width: 767.98px) {
+  .marketing-image-wrapper {
+    max-width: 65%; /* Adjusted slightly for the matte frame padding */
+    margin: 0 auto;
+    padding-left: 15px; /* Keeps the flat shadow visible on mobile */
+  }
+
+  .editorial-frame {
+    box-shadow: -10px 10px 0px #c5a059; /* Scaled down gold shadow for mobile */
+  }
+
+  .editorial-frame::after {
+    width: 25px;
+    height: 25px;
+    border-top: 2px solid #b85a67;
+    border-right: 2px solid #b85a67;
+  }
+
+  .marketing-text-content {
+    padding-left: 0;
+    text-align: center; /* Centers all standard flowing typography headers and lines */
+    align-items: center; /* Locks structural flex elements directly down the middle axis */
+    gap: 14px;
+    padding-top: 16px;
+  }
+
+  .marketing-heading {
+    font-size: 1.65rem;
+    line-height: 1.25;
+    padding: 0 12px;
+    margin-bottom: 0;
+  }
+
+  .marketing-description {
+    font-size: 0.95rem;
+    padding: 0 16px;
+    line-height: 1.45;
+    margin-bottom: 2px;
+  }
+  
+  .marketing-action-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center; /* Keeps call-to-action button perfectly centered within viewport bounds */
+  }
+
+  .btn-marketing-action {
+    width: auto;
+    padding: 12px 40px;
+  }
+}

@@ -1,0 +1,150 @@
+:host { 
+  display: block; 
+  flex-grow: 1;
+}
+
+/* THE FIX FOR FRAGMENT CLIPPING: 
+   This forces the browser to leave a 220px gap above the section 
+   when a user clicks a #link from the footer. 
+*/
+[id] {
+  scroll-margin-top: 220px;
+}
+
+.content { 
+  max-width: 800px; 
+}
+
+.page-header { 
+  font-size: 2.5rem; 
+  margin-bottom: 10px; 
+  color: #000; 
+}
+
+.effective-date { 
+  color: #6c757d; 
+  margin-bottom: 40px; 
+  font-size: 0.9rem; 
+}
+
+section { 
+  margin-bottom: 60px; 
+}
+
+h2 { 
+  font-size: 1.5rem; 
+  margin-bottom: 20px; 
+  color: #000; 
+  border-bottom: 1px solid #eee; 
+  padding-bottom: 10px; 
+}
+
+p { 
+  line-height: 1.6; 
+  color: #333; 
+  margin-bottom: 15px; 
+}
+
+ul {
+  padding-left: 20px;
+  margin-bottom: 20px;
+}
+
+ul li {
+  line-height: 1.6;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+/* Beautiful custom card styling for layout execution steps */
+.steps-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.step-card {
+  background: #fdfdfd;
+  border: 1px solid #f0f0f0;
+  padding: 20px;
+  border-radius: 4px;
+}
+
+.step-badge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  background-color: #000000;
+  color: #ffffff;
+  padding: 3px 8px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+  border-radius: 2px;
+}
+
+.step-card h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #000;
+}
+
+.step-card p {
+  margin-bottom: 0;
+  font-size: 0.95rem;
+}
+
+/* Styled contact information card details */
+.contact-details-box {
+  background-color: #fafafa;
+  border: 1px solid #eeeeee;
+  padding: 24px;
+  margin-top: 25px;
+  border-radius: 4px;
+}
+
+.contact-details-box h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #000;
+}
+
+.contact-row {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 14px;
+  font-size: 0.95rem;
+}
+
+.contact-row:last-child {
+  margin-bottom: 0;
+}
+
+.contact-row strong {
+  color: #000;
+  margin-bottom: 4px;
+}
+
+.contact-row a {
+  color: #b85a67;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.contact-row a:hover {
+  text-decoration: underline;
+}
+
+@media (min-width: 576px) {
+  .contact-row {
+    flex-direction: row;
+  }
+  .contact-row strong {
+    width: 160px;
+    flex-shrink: 0;
+    margin-bottom: 0;
+  }
+}

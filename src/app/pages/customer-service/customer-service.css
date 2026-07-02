@@ -1,0 +1,53 @@
+/* Core wrapper matching the Legal section */
+.page-global-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 60px 20px;
+  position: relative;
+}
+
+/* Two-column grid */
+.layout-split-grid {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 50px;
+  align-items: start;
+}
+
+/* THE FIX: Pushed down to 220px to clear the massive double header */
+.sidebar-column {
+  position: sticky;
+  top: 220px; 
+  z-index: 10;
+}
+
+.content-column {
+  min-width: 0;
+}
+
+/* Clean up the sidebar heading typography so it doesn't overflow */
+.sidebar-column h5, 
+.sidebar-column .sidebar-title,
+.sidebar-column [class*="title"] {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #999999;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* Responsive collapse for tablets and mobile */
+@media (max-width: 991px) {
+  .layout-split-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  
+  .sidebar-column {
+    position: relative;
+    top: 0;
+    margin-bottom: 20px;
+  }
+}

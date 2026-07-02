@@ -1,0 +1,135 @@
+<div class="auth-forced-card p-4 p-sm-5 position-relative">
+
+  @if (isLoading) {
+    <div class="login-spinner-overlay">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+  }
+
+  <button type="button" class="btn-close-auth" (click)="goBackToHome()" aria-label="Close">
+    <i class="fa-solid fa-xmark"></i>
+  </button>
+
+  <div class="text-center auth-brand-header mb-4">
+    <img src="company-logo.png" alt="Heart Beauty" class="auth-business-logo mb-2">
+    <h4 class="fw-bold text-dark m-0">Register</h4>
+  </div>
+
+  <!-- ── Verification-pending success screen ─────────────────────────── -->
+  <div *ngIf="registrationSuccess" class="text-center py-4">
+    <div class="success-icon-circle mb-3">
+      <i class="fa-solid fa-envelope"></i>
+    </div>
+    <h5 class="fw-bold text-dark mb-2">Check your inbox</h5>
+    <p class="text-muted small mb-1">
+      We've sent a verification link to
+    </p>
+    <p class="fw-semibold text-dark small mb-3">{{ registeredEmail }}</p>
+    <p class="text-muted small mb-4">
+      Click the link in that email to activate your account, then come back
+      here to log in.
+    </p>
+    <button
+      type="button"
+      class="btn btn-continue active rounded-pill py-2 w-100"
+      (click)="onLoginClick()">
+      Go to Login
+    </button>
+    <p class="text-muted mt-3" style="font-size: 11px;">
+      Didn't receive it? Check your spam folder or contact support.
+    </p>
+  </div>
+
+  <!-- ── Registration form ────────────────────────────────────────────── -->
+  <ng-container *ngIf="!registrationSuccess">
+    <div class="row gx-3 mb-3">
+      <div class="col-6">
+        <button (click)="onGoogleRegister()" type="button" class="btn btn-outline-secondary w-100 d-flex align-items-center justify-content-center py-2 social-btn" [disabled]="isLoading">
+          <i class="fa-brands fa-google me-2" style="color: #DB4437;"></i>
+          <span>Register with Google</span>
+        </button>
+      </div>
+      <div class="col-6">
+        <button (click)="onFacebookRegister()" type="button" class="btn btn-outline-secondary w-100 d-flex align-items-center justify-content-center py-2 social-btn" [disabled]="isLoading">
+          <i class="fa-brands fa-facebook text-primary me-2"></i>
+          <span>Register with Facebook</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="text-center position-relative my-4">
+      <hr>
+      <span class="bg-white px-3 position-absolute top-50 start-50 translate-middle text-muted small">Or</span>
+    </div>
+
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <div class="form-floating mb-3 border-bottom">
+        <input type="text" formControlName="firstName" class="form-control border-0 shadow-none px-0" placeholder="First Name">
+        <label class="px-0 text-muted">First Name</label>
+      </div>
+
+      <div class="form-floating mb-3 border-bottom">
+        <input type="text" formControlName="lastName" class="form-control border-0 shadow-none px-0" placeholder="Last Name">
+        <label class="px-0 text-muted">Last Name</label>
+      </div>
+
+      <div class="form-floating mb-3 border-bottom">
+        <input type="email" formControlName="email" class="form-control border-0 shadow-none px-0" placeholder="Email Address">
+        <label class="px-0 text-muted">Email Address</label>
+      </div>
+
+      <div class="form-floating mb-1 border-bottom position-relative">
+        <input
+          [type]="showPassword ? 'text' : 'password'"
+          formControlName="password"
+          class="form-control border-0 shadow-none px-0 pe-5"
+          placeholder="Password">
+        <label class="px-0 text-muted">Password</label>
+
+        <i class="fa-solid position-absolute end-0 top-50 translate-middle-y text-muted password-toggle"
+           [ngClass]="showPassword ? 'fa-eye' : 'fa-eye-slash'"
+           (click)="togglePassword()"></i>
+      </div>
+      <p class="small text-muted mb-4" style="font-size: 11px;">At least 8 characters and 1 special character or number</p>
+
+      <div class="row g-3 mb-2">
+        <div class="col-4 border-bottom">
+          <div class="form-floating">
+            <select class="form-select border-0 shadow-none px-0 country-code-select">
+              <option>ZA (+27)</option>
+            </select>
+            <label class="px-0 text-muted">Code</label>
+          </div>
+        </div>
+        <div class="col-8 border-bottom">
+          <div class="form-floating">
+            <input type="text" formControlName="mobile" class="form-control border-0 shadow-none px-0" placeholder="Mobile Number">
+            <label class="px-0 text-muted">Mobile Number</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-check my-4">
+        <input class="form-check-input" type="checkbox" formControlName="newsletter" id="newsCheck">
+        <label class="form-check-label small" for="newsCheck">I want to receive offers and wish list newsletters</label>
+      </div>
+
+      <div *ngIf="errorMessage" class="auth-error-msg">
+        <i class="fa-solid fa-circle-exclamation me-1"></i> {{ errorMessage }}
+      </div>
+
+      <button type="submit" class="btn btn-continue w-100 rounded-pill py-2 mb-3"
+              [ngClass]="{'active': registerForm.valid && !isLoading}"
+              [disabled]="!registerForm.valid || isLoading">
+        Continue
+      </button>
+    </form>
+
+    <p class="text-center small text-muted mt-3">
+      Already registered?
+      <a href="javascript:void(0)" (click)="onLoginClick()" class="fw-bold text-decoration-none" style="color: #0b79bf;">Login</a>
+    </p>
+  </ng-container>
+</div>

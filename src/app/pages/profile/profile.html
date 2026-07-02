@@ -1,0 +1,20 @@
+<div class="profile-page-container">
+  
+  <header class="profile-page-header">
+    <h1 class="profile-page-title">User Profile</h1>
+  </header>
+
+  <div class="profile-layout-grid">
+    
+    <app-profile-items 
+      [activeSection]="currentSection" 
+      (sectionChange)="onSectionChange($event)">
+    </app-profile-items>
+
+    <app-profile-details-main 
+      [activeSection]="currentSection">
+    </app-profile-details-main>
+
+  </div>
+
+</div>

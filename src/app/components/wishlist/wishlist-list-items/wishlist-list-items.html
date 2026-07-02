@@ -1,0 +1,97 @@
+<div class="toast-container">
+  <div class="wishlist-toast" *ngFor="let toast of activeToasts">
+    <i class="bi bi-check-circle-fill text-success me-2"></i> Item Added To Cart
+  </div>
+</div>
+
+<div class="wishlist-container">
+  <div class="wishlist-header">
+    <h2 class="fw-bold m-0 fs-3 text-dark">Wishlist</h2>
+    <div class="wishlist-notice">
+      <i class="bi bi-info-circle-fill text-primary"></i>
+      <p class="mb-0 text-muted small">
+        <strong class="text-uppercase text-secondary">Notice:</strong> Items added to your Wishlist are not guaranteed to remain available. In the event that a product becomes out of stock and is not restocked, it may be removed from your Wishlist to ensure accurate and up-to-date product availability.
+      </p>
+    </div>
+  </div>
+
+  <div *ngIf="isLoading" class="text-center py-5">
+    <div class="spinner-border" role="status" style="color: #b85a67;">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <p class="mt-3 text-muted">Loading your wishlist...</p>
+  </div>
+
+  <div class="wishlist-items-stack" *ngIf="!isLoading">
+    @for (item of wishlistItems; track item.productId) {
+      <div class="wishlist-item-card">
+        <div class="card-body-layout">
+          
+          <div class="item-image-container">
+            <img [src]="item.image" [alt]="item.name" class="item-img">
+          </div>
+
+          <div class="item-details">
+            <h3 class="product-title mb-1">{{ item.name }}</h3>
+            
+            <p class="product-desc mb-1" *ngIf="item.color || item.size">
+              {{ item.color }}<span *ngIf="item.color && item.size"> · </span><span *ngIf="item.size">{{ item.size }} {{ item.unit }}</span>
+            </p>
+
+            <p class="product-desc text-muted small mb-1">Added {{ item.addedAt | date:'mediumDate' }}</p>
+            
+            <p class="product-desc small text-muted mb-1" *ngIf="item.section">
+              <strong>Section:</strong> {{ formatSection(item.section) }}
+            </p>
+
+            <div class="product-rating d-flex align-items-center gap-1 mb-1">
+              <div class="d-flex gap-1">
+                <i class="bi text-warning" 
+                   *ngFor="let star of getStars(item.rating)" 
+                   [ngClass]="{'bi-star-fill': star === 1, 'bi-star-half': star === 0.5, 'bi-star': star === 0}">
+                </i>
+              </div>
+              <span class="small fw-medium text-dark ms-1">{{ item.rating }}</span>
+            </div>
+
+            <div class="stock-status small mb-2" *ngIf="item.stockCount !== undefined">
+              <span [ngClass]="item.inStock ? 'text-success' : 'text-danger'">
+                <i [ngClass]="item.inStock ? 'bi bi-check-circle-fill' : 'bi bi-x-circle-fill'"></i>
+                {{ item.inStock ? 'In Stock (' + item.stockCount + ')' : 'Out of Stock' }}
+              </span>
+            </div>
+          </div>
+
+          <div class="item-controls">
+            <div class="price-container mb-3">
+              <span class="current-price d-block fw-bold">R {{ item.price.toFixed(2) }}</span>
+              <span class="original-price text-decoration-line-through text-muted small" *ngIf="item.isDiscounted && item.initialPrice > item.price">
+                R {{ item.initialPrice.toFixed(2) }}
+              </span>
+            </div>
+            
+            <div class="action-buttons-group">
+              <button type="button" class="btn-add-to-cart-green text-uppercase mb-3" 
+                      [disabled]="!item.inStock" 
+                      (click)="addToCart(item)">
+                Add to Cart
+              </button>
+              
+              <div class="actions-wrapper">
+                <button type="button" class="action-btn remove-btn" (click)="removeItem(item.productId)">
+                  <i class="bi bi-trash-fill me-1"></i>Remove
+                </button>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    } @empty {
+      <div class="empty-wishlist-pane text-center text-muted">
+        <i class="bi bi-heartbreak"></i>
+        <p class="fs-5 mb-0">Your wishlist is currently empty.</p>
+      </div>
+    }
+  </div>
+</div>

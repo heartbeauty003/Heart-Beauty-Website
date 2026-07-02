@@ -1,0 +1,81 @@
+<div class="auth-forced-card p-4 p-sm-5 position-relative">
+
+  @if (isLoading) {
+    <div class="login-spinner-overlay">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+  }
+
+  <button type="button" class="btn-close-auth" (click)="goBackToHome()" aria-label="Close">
+    <i class="fa-solid fa-xmark"></i>
+  </button>
+
+  <div class="text-center auth-brand-header mb-4">
+    <img src="company-logo.png" alt="Heart Beauty" class="auth-business-logo mb-2">
+    <h4 class="fw-bold text-dark m-0">Login</h4>
+  </div>
+
+  <div class="row gx-3 mb-3">
+    <div class="col-6">
+      <button (click)="onGoogleLogin()" type="button" class="btn btn-outline-secondary w-100 d-flex align-items-center justify-content-center py-2 social-btn" [disabled]="isLoading">
+        <i class="fa-brands fa-google me-2" style="color: #DB4437;"></i>
+        <span>Login with Google</span>
+      </button>
+    </div>
+    <div class="col-6">
+      <button (click)="onFacebookLogin()" type="button" class="btn btn-outline-secondary w-100 d-flex align-items-center justify-content-center py-2 social-btn" [disabled]="isLoading">
+        <i class="fa-brands fa-facebook text-primary me-2"></i>
+        <span>Login with Facebook</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="text-center position-relative my-4">
+    <hr>
+    <span class="bg-white px-3 position-absolute top-50 start-50 translate-middle text-muted small">Or</span>
+  </div>
+
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div class="form-floating mb-4 border-bottom">
+      <input type="email" formControlName="email" class="form-control border-0 shadow-none px-0" id="loginEmail" placeholder="Email Address">
+      <label for="loginEmail" class="px-0 text-muted">Email Address</label>
+    </div>
+
+    <div class="mb-4">
+      <div class="d-flex justify-content-end mb-1">
+        <a href="javascript:void(0)" (click)="onForgotPassword()" class="small text-decoration-none" style="color: #0b79bf;">Forgot Password?</a>
+      </div>
+      <div class="form-floating border-bottom position-relative">
+        <input
+          [type]="showPassword ? 'text' : 'password'"
+          formControlName="password"
+          class="form-control border-0 shadow-none px-0 pe-5"
+          id="loginPassword"
+          placeholder="Password">
+        <label for="loginPassword" class="px-0 text-muted">Password</label>
+
+        <i class="fa-solid position-absolute end-0 top-50 translate-middle-y text-muted password-toggle"
+           [ngClass]="showPassword ? 'fa-eye' : 'fa-eye-slash'"
+           (click)="togglePassword()"></i>
+      </div>
+    </div>
+
+    <div *ngIf="errorMessage" class="auth-error-msg">
+      <i class="fa-solid fa-circle-exclamation me-1"></i> {{ errorMessage }}
+    </div>
+
+    <button type="submit"
+            class="btn btn-login w-100 rounded-pill py-2 mb-4"
+            [ngClass]="{'active': loginForm.valid && !isLoading}"
+            [disabled]="!loginForm.valid || isLoading">
+      Login
+    </button>
+  </form>
+
+  <p class="text-center small text-muted mt-3">
+    New to Heart Beauty?
+    <a href="javascript:void(0)" (click)="switchToRegister()" class="fw-bold text-decoration-none" style="color: #0b79bf;">Register</a>
+  </p>
+</div>

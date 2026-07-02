@@ -1,0 +1,321 @@
+<nav class="w-100 position-relative navbar-clean-border">
+
+  <!-- Toast notifications -->
+  <div class="sr-toast-container">
+    <div class="sr-toast" *ngFor="let toast of activeToasts">
+      <i class="bi bi-check-circle-fill text-success me-2"></i>
+      {{ toast.type === 'cart' ? 'Item Added To Cart' : 'Item Added To Wishlist' }}
+    </div>
+  </div>
+
+  <div class="w-100 pt-3 px-3 px-md-4 px-lg-5 pb-4 custom-bg-color">
+
+    <!-- ── Desktop ── -->
+    <div class="d-none d-md-flex flex-column mx-auto w-100" style="max-width: 1500px;">
+      <div class="d-flex justify-content-between align-items-center w-100 pb-2">
+        <ul class="list-unstyled d-flex gap-3 mb-0 ms-md-5 ps-lg-4 text-links">
+          <li><a routerLink="/" class="text-decoration-none">HOME</a></li>
+          <li><a routerLink="/wishlist" class="text-decoration-none">WISHLIST</a></li>
+          <li><a routerLink="/about-us" class="text-decoration-none">ABOUT US</a></li>
+          <li><a routerLink="/why-us" class="text-decoration-none">WHY US</a></li>
+          <li><a routerLink="/support" class="text-decoration-none">SUPPORT</a></li>
+          <li><a routerLink="/loyalty" class="text-decoration-none">LOYALTY</a></li>
+          <li><a routerLink="/legal" class="text-decoration-none">LEGAL</a></li>
+        </ul>
+        <div class="d-flex gap-3 social-links">
+          <a href="https://www.instagram.com/heartbeauty003/" aria-label="instagram"><i class="bi bi-instagram"></i></a>
+          <a href="https://za.pinterest.com/heartbeauty003/?actingBusinessId=1112670789096170068" aria-label="Pinterest"><i class="bi bi-pinterest"></i></a>
+          <a href="https://www.tiktok.com/@heartbeauty_world?is_from_webapp=1&sender_device=pc" aria-label="TikTok"><i class="bi bi-tiktok"></i></a>
+          <a href="http://www.youtube.com/@HeartBeauty-l1u" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+        </div>
+      </div>
+
+      <hr class="text-dark opacity-25 my-2">
+
+      <div class="d-flex justify-content-between align-items-center w-100 pt-2">
+        <div class="flex-grow-1 ps-md-4 ps-lg-5">
+          <a routerLink="/" class="d-inline-block decoration-none" aria-label="Home">
+            <img src="/company-logo.png" alt="Company Logo" class="navbar-brand-logo">
+          </a>
+        </div>
+
+        <!-- Desktop Search -->
+        <div class="flex-grow-1 mx-4 w-100 search-wrapper" style="max-width: 600px;">
+          <div class="input-group search-input-group" style="height: 44px;">
+            <input
+              type="text"
+              class="form-control border border-secondary px-4 rounded-start-pill shadow-none"
+              placeholder="Find a product..."
+              autocomplete="off"
+              [value]="searchTerm()"
+              (input)="onSearchInput($event)"
+            >
+            <button
+              class="btn btn-search rounded-end-pill px-4 d-flex align-items-center justify-content-center"
+              type="button"
+              aria-label="Search"
+            >
+              <i class="bi bi-search text-white fs-5"></i>
+            </button>
+          </div>
+
+          @if (isSearchOpen()) {
+            <div class="search-dropdown">
+              @if (searchResults().length > 0) {
+                <div class="search-dropdown-heading">Products</div>
+                <div class="search-results-list">
+                  @for (product of searchResults(); track product.id) {
+                    <div class="search-result-item">
+                      <button type="button" class="search-result-main" (mousedown)="selectProduct(product)">
+                        <img [src]="product.imageUrl" [alt]="product.title" class="search-result-img">
+                        <div class="search-result-body">
+                          <span class="search-result-title">{{ product.title }}</span>
+                          <span class="search-result-meta">
+                            {{ product.size }} {{ product.unit }}
+                            @if (product.isDiscounted) {
+                              &nbsp;·&nbsp;<span class="search-result-sale">On Sale</span>
+                            }
+                          </span>
+                        </div>
+                        <span class="search-result-price">R{{ product.price }}</span>
+                      </button>
+                      <div class="search-result-actions">
+                        <button
+                          type="button"
+                          class="sr-action-btn"
+                          [class.sr-wishlisted]="isWishlisted(product.id)"
+                          (mousedown)="toggleWishlist(product, $event)"
+                          aria-label="Add to wishlist"
+                        >
+                          <i class="bi bi-heart-fill"></i>
+                        </button>
+                        <button
+                          type="button"
+                          class="sr-action-btn sr-cart-btn"
+                          (mousedown)="addToCart(product, $event)"
+                          aria-label="Add to cart"
+                        >
+                          <i class="bi bi-cart3"></i>
+                        </button>
+                      </div>
+                    </div>
+                  }
+                </div>
+              } @else {
+                <div class="search-no-results">
+                  No products found for "<strong>{{ searchTerm() }}</strong>"
+                </div>
+              }
+            </div>
+          }
+        </div>
+
+        <!-- Desktop nav icons -->
+        <div class="flex-grow-1 d-flex justify-content-end gap-4 nav-icons">
+          <a routerLink="/login" aria-label="User Profile"><i class="bi bi-person"></i></a>
+          <a routerLink="/cart" aria-label="Shopping Cart"><i class="bi bi-cart3"></i></a>
+          <a routerLink="/notifications" aria-label="Notifications" class="bell-wrapper">
+            <i class="bi bi-bell"></i>
+            @if (notificationCount() > 0) {
+              <span class="notification-badge">{{ notificationCount() }}</span>
+            }
+          </a>
+          @if (currentUser()) {
+            <a routerLink="/profile" class="p-0 border-0 bg-transparent text-decoration-none" aria-label="View Profile">
+              <div class="user-avatar-badge">{{ userInitials() }}</div>
+            </a>
+          }
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Mobile top bar ── -->
+    <div class="d-flex d-md-none align-items-center justify-content-between w-100">
+      <div class="d-flex align-items-center gap-2">
+        <button class="btn btn-link p-1 d-flex align-items-center mobile-hamburger" (click)="toggleSidebar()" aria-label="Open Navigation Menu">
+          <i class="bi bi-list fs-1"></i>
+        </button>
+        <a routerLink="/" class="d-inline-block decoration-none" aria-label="Home">
+          <img src="/company-logo.png" alt="Company Logo" class="mobile-brand-logo">
+        </a>
+      </div>
+
+      <!-- Mobile icons -->
+      <div class="d-flex align-items-center gap-3 mobile-icons">
+        <a routerLink="/login" class="p-1 d-flex align-items-center" aria-label="Account Profile">
+          <i class="bi bi-person fs-3"></i>
+        </a>
+        <a routerLink="/cart" class="p1 d-flex align-items-center" aria-label="Shopping Cart">
+          <i class="bi bi-cart3 fs-3"></i>
+        </a>
+        <a routerLink="/notifications" class="p-1 d-flex align-items-center bell-wrapper" aria-label="Notifications">
+          <i class="bi bi-bell fs-3"></i>
+          @if (notificationCount() > 0) {
+            <span class="notification-badge">{{ notificationCount() }}</span>
+          }
+        </a>
+        @if (currentUser()) {
+          <a routerLink="/profile" class="p-0 border-0 bg-transparent text-decoration-none" aria-label="View Profile">
+            <div class="user-avatar-badge mobile-badge">{{ userInitials() }}</div>
+          </a>
+        }
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Category bar -->
+  <div class="category-bar w-100 d-none d-md-block">
+    <ul class="list-unstyled d-flex justify-content-center align-items-center gap-4 py-3 mb-0 category-links">
+      <li><a routerLink="/on-sale" class="text-decoration-none fw-medium tracking-wide">ON SALE</a></li>
+      <li><a routerLink="/bundle-deals" class="text-decoration-none fw-medium tracking-wide">BUNDLE DEALS</a></li>
+      <li><a routerLink="/promotions" class="text-decoration-none fw-medium tracking-wide">PROMOTIONS</a></li>
+      <li><a routerLink="/trending-now" class="text-decoration-none fw-medium tracking-wide">TRENDING NOW</a></li>
+      <li><a routerLink="/clearance-sale" class="text-decoration-none fw-medium tracking-wide">CLEARANCE SALE</a></li>
+    </ul>
+  </div>
+
+  <!-- Sidebar backdrop -->
+  @if (isSidebarOpen()) {
+    <div class="position-fixed top-0 start-0 w-100 h-100 bg-dark bg-opacity-50" style="z-index: 1040;" (click)="closeSidebar()"></div>
+  }
+
+  <!-- Sidebar drawer -->
+  <div class="position-fixed top-0 h-100 bg-white shadow-lg d-flex flex-column sidebar-drawer"
+       [class.drawer-active]="isSidebarOpen()"
+       style="width: 280px; z-index: 1050;">
+    <div class="d-flex justify-content-between align-items-center p-3 border-bottom">
+      <a routerLink="/" class="d-inline-block decoration-none" aria-label="Home">
+        <img src="/company-logo.png" alt="Company Logo" class="sidebar-brand-logo">
+      </a>
+      <button class="btn btn-link p-1 d-flex align-items-center" style="color:#000 !important;" (click)="closeSidebar()" aria-label="Close Menu">
+        <i class="bi bi-x-lg fs-4" style="color:#000 !important;"></i>
+      </button>
+    </div>
+    <div class="flex-grow-1 overflow-auto py-3">
+      <ul class="list-unstyled d-flex flex-column drawer-links m-0 p-0">
+        <li><a routerLink="/on-sale" class="d-block text-decoration-none px-4 py-2 fw-medium" (click)="closeSidebar()">ON SALE</a></li>
+        <li><a routerLink="/bundle-deals" class="d-block text-decoration-none px-4 py-2 fw-medium" (click)="closeSidebar()">BUNDLE DEALS</a></li>
+        <li><a routerLink="/promotions" class="d-block text-decoration-none px-4 py-2 fw-medium" (click)="closeSidebar()">PROMOTIONS</a></li>
+        <li><a routerLink="/trending-now" class="d-block text-decoration-none px-4 py-2 fw-medium" (click)="closeSidebar()">TRENDING NOW</a></li>
+        <li><a routerLink="/clearance-sale" class="d-block text-decoration-none px-4 py-2 fw-medium" (click)="closeSidebar()">CLEARANCE SALE</a></li>
+        <hr class="text-muted mx-4 my-2">
+        <li>
+          <button
+            type="button"
+            class="d-flex align-items-center justify-content-between w-100 text-decoration-none px-4 py-2 fw-medium text-uppercase drawer-find-btn"
+            (click)="openMobileSearch()"
+          >
+            <span>FIND A PRODUCT</span>
+            <i class="bi bi-search fs-6"></i>
+          </button>
+        </li>
+      </ul>
+      <hr class="text-muted mx-4 my-3">
+      <ul class="list-unstyled d-flex flex-column drawer-links m-0 p-0 opacity-75">
+        <li><a routerLink="/" class="d-block text-decoration-none px-4 py-2 small" (click)="closeSidebar()">HOME</a></li>
+        <li><a routerLink="/wishlist" class="d-block text-decoration-none px-4 py-2 small" (click)="closeSidebar()">WISHLIST</a></li>
+        <li><a routerLink="/about-us" class="d-block text-decoration-none px-4 py-2 small" (click)="closeSidebar()">ABOUT US</a></li>
+        <li><a routerLink="/why-us" class="d-block text-decoration-none px-4 py-2 small" (click)="closeSidebar()">WHY US</a></li>
+        <li><a routerLink="/support" class="d-block text-decoration-none px-4 py-2 small" (click)="closeSidebar()">SUPPORT</a></li>
+        <li><a routerLink="/loyalty" class="d-block text-decoration-none px-4 py-2 small" (click)="closeSidebar()">LOYALTY</a></li>
+        <li><a routerLink="/legal" class="d-block text-decoration-none px-4 py-2 small" (click)="closeSidebar()">LEGAL</a></li>
+        <li><a routerLink="/notifications" class="d-block text-decoration-none px-4 py-2 small" (click)="closeSidebar()">NOTIFICATIONS</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ── Mobile full-screen search overlay ── -->
+  @if (isMobileSearchOpen()) {
+    <div class="mobile-search-overlay d-flex flex-column">
+
+      <!-- Top bar: input + cancel -->
+      <div class="mobile-search-bar d-flex align-items-center gap-3 px-3 py-3 border-bottom">
+        <div class="input-group" style="height: 42px;">
+          <span class="input-group-text bg-white border-end-0 rounded-start-pill border border-secondary ps-3">
+            <i class="bi bi-search text-muted"></i>
+          </span>
+          <input
+            id="mobile-search-input"
+            type="text"
+            class="form-control border-start-0 border border-secondary shadow-none px-2 rounded-end-pill"
+            placeholder="Find a product..."
+            autocomplete="off"
+            [value]="searchTerm()"
+            (input)="onMobileSearchInput($event)"
+          >
+        </div>
+        <button
+          type="button"
+          class="mobile-search-cancel btn btn-link text-decoration-none p-0 flex-shrink-0"
+          (click)="closeMobileSearch()"
+        >
+          Cancel
+        </button>
+      </div>
+
+      <!-- Results area -->
+      <div class="mobile-search-results flex-grow-1 overflow-auto">
+
+        @if (searchTerm().trim().length === 0) {
+          <div class="mobile-search-prompt d-flex flex-column align-items-center justify-content-center h-100 text-center px-4">
+            <i class="bi bi-search mb-3" style="font-size: 2.5rem; color: #cccccc;"></i>
+            <p class="mb-0" style="font-size: 14px; color: #999999;">Start typing to find products</p>
+          </div>
+
+        } @else if (searchResults().length === 0) {
+          <div class="mobile-search-prompt d-flex flex-column align-items-center justify-content-center h-100 text-center px-4">
+            <i class="bi bi-emoji-frown mb-3" style="font-size: 2.5rem; color: #cccccc;"></i>
+            <p class="mb-1 fw-semibold" style="font-size: 14px; color: #333;">No results for "{{ searchTerm() }}"</p>
+            <p class="mb-0" style="font-size: 13px; color: #999999;">Try a different search term</p>
+          </div>
+
+        } @else {
+          <div class="mobile-search-heading px-4 pt-3 pb-2">Products</div>
+          @for (product of searchResults(); track product.id) {
+            <div class="mobile-result-item w-100 d-flex align-items-center gap-3 px-4 py-3">
+              <button
+                type="button"
+                class="mobile-result-main d-flex align-items-center gap-3 flex-grow-1 min-w-0 bg-transparent border-0 text-start p-0"
+                (click)="selectProduct(product)"
+              >
+                <img [src]="product.imageUrl" [alt]="product.title" class="mobile-result-img flex-shrink-0">
+                <div class="d-flex flex-column flex-grow-1 min-w-0">
+                  <span class="mobile-result-title">{{ product.title }}</span>
+                  <span class="mobile-result-meta">
+                    {{ product.size }} {{ product.unit }}
+                    @if (product.isDiscounted) {
+                      &nbsp;·&nbsp;<span class="mobile-result-sale">On Sale</span>
+                    }
+                  </span>
+                </div>
+                <span class="mobile-result-price flex-shrink-0">R{{ product.price }}</span>
+              </button>
+              <div class="mobile-result-actions d-flex flex-column gap-2 flex-shrink-0">
+                <button
+                  type="button"
+                  class="sr-action-btn"
+                  [class.sr-wishlisted]="isWishlisted(product.id)"
+                  (click)="toggleWishlist(product, $event)"
+                  aria-label="Add to wishlist"
+                >
+                  <i class="bi bi-heart-fill"></i>
+                </button>
+                <button
+                  type="button"
+                  class="sr-action-btn sr-cart-btn"
+                  (click)="addToCart(product, $event)"
+                  aria-label="Add to cart"
+                >
+                  <i class="bi bi-cart3"></i>
+                </button>
+              </div>
+            </div>
+          }
+        }
+
+      </div>
+    </div>
+  }
+
+</nav>

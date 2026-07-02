@@ -1,0 +1,67 @@
+<div class="content-view-card">
+  <h2 class="content-pane-title">Account Management</h2>
+  <p class="content-pane-placeholder">
+    Modify master credentials, process structured data extractions, or view final permanent profile termination procedures here.
+  </p>
+
+  <div class="management-danger-zone">
+    <div class="danger-header-block">
+      <h3 class="danger-title">Close Account Permanently</h3>
+      <p class="danger-description">
+        Request full profile termination. Proceeding deletes your addresses, purchase records, and tracking configurations irreversibly under POPIA governance guidelines.
+      </p>
+    </div>
+
+    @if (!isConfirming) {
+      <button type="button" class="btn-danger-trigger" (click)="promptDeletionConfirmation()">
+        Request Account Deletion
+      </button>
+    } @else {
+      <div class="confirmation-modal-pane animate-fade-in">
+
+        <div class="warning-callout">
+          <i class="bi bi-exclamation-triangle-fill"></i>
+          <span>This operation cannot be reversed. All your data will be permanently erased.</span>
+        </div>
+
+        <div class="confirm-code-block">
+          <p class="confirm-code-instruction">
+            To confirm, type the code below exactly as shown:
+          </p>
+          <div class="confirm-code-display">{{ confirmationCode }}</div>
+          <input
+            type="text"
+            class="confirm-code-input"
+            [(ngModel)]="userConfirmInput"
+            placeholder="Enter code here"
+            [disabled]="isDeleting"
+            autocomplete="off"
+            spellcheck="false"
+          />
+        </div>
+
+        @if (deleteError) {
+          <p class="delete-error-text">{{ deleteError }}</p>
+        }
+
+        <div class="confirmation-actions">
+          <button
+            type="button"
+            class="btn-confirm-final"
+            [disabled]="!confirmationMatches || isDeleting"
+            (click)="executeAccountDeletion()">
+            {{ isDeleting ? 'Deleting...' : 'Yes, Delete My Account' }}
+          </button>
+          <button
+            type="button"
+            class="btn-cancel-final"
+            [disabled]="isDeleting"
+            (click)="abortDeletion()">
+            Cancel
+          </button>
+        </div>
+
+      </div>
+    }
+  </div>
+</div>

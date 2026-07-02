@@ -1,0 +1,53 @@
+<section class="products-highlight-section">
+  <div class="container">
+    <div class="title-container">
+      <h2 class="section-title">Elevate Your Beauty with Premium Hair</h2>
+      <div class="divider"></div>
+      <p class="section-subtitle">
+        Whether you're looking for flawless wigs, premium weaves, natural-looking frontals,
+        or high-quality human blend hair, Heart Beauty offers a carefully selected collection
+        that combines style, comfort, durability, and elegance for every occasion.
+      </p>
+    </div>
+
+    <div class="carousel-wrapper">
+
+      <button class="nav-btn prev-btn" (click)="scrollLeft()" aria-label="Previous product">&#10094;</button>
+
+      <div class="products-list-view" #productsList (scroll)="onScroll($event)">
+
+        <div class="product-item" (click)="openModal('image-30.png', 'Premium Wig - Look 30')">
+          <img src="image-30.png" alt="Premium Wig - Look 30" class="product-img">
+        </div>
+
+        <div class="product-item" (click)="openModal('image-32.png', 'Premium Weave - Look 32')">
+          <img src="image-32.png" alt="Premium Weave - Look 32" class="product-img">
+        </div>
+
+        <div class="product-item" (click)="openModal('image-16.png', 'Natural Frontal - Look 16')">
+          <img src="image-16.png" alt="Natural Frontal - Look 16" class="product-img">
+        </div>
+
+        <div class="product-item" (click)="openModal('image-13.png', 'Human Blend Hair - Look 13')">
+          <img src="image-13.png" alt="Human Blend Hair - Look 13" class="product-img">
+        </div>
+      </div>
+
+      <button class="nav-btn next-btn" (click)="scrollRight()" aria-label="Next product">&#10095;</button>
+    </div>
+
+    <div class="progress-container">
+      <div class="progress-bar" [style.width.%]="scrollProgress"></div>
+    </div>
+
+  </div>
+</section>
+
+@if (selectedImageSrc) {
+  <div class="modal-overlay" (click)="closeModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <button class="close-btn" (click)="closeModal()" aria-label="Close Modal">&times;</button>
+      <img [src]="selectedImageSrc" [alt]="selectedImageAlt" class="modal-img">
+    </div>
+  </div>
+}

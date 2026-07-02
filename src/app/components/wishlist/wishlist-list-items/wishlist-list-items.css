@@ -1,0 +1,304 @@
+:host {
+  display: block;
+  width: 100%;
+  background-color: #ffffff !important;
+  padding: 30px 0 !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+}
+
+.wishlist-container {
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  padding: 0 15px !important;
+}
+
+/* --- TOAST NOTIFICATION --- */
+.toast-container {
+  position: fixed !important;
+  top: 20px !important;
+  right: 20px !important;
+  z-index: 9999 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+  pointer-events: none !important;
+}
+
+.wishlist-toast {
+  background-color: #ffffff !important;
+  border: 1px solid #28a745 !important;
+  color: #28a745 !important;
+  padding: 12px 20px !important;
+  border-radius: 4px !important;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+  display: flex !important;
+  align-items: center !important;
+  font-weight: 500 !important;
+  animation: fadeInOut 1.5s ease-in-out forwards !important;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translateY(-20px); }
+  15% { opacity: 1; transform: translateY(0); }
+  85% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-20px); }
+}
+
+/* --- HEADER ACTIONS ROW - MATCHED TO CART HEADER --- */
+.wishlist-header {
+  margin: 0 0 24px 0 !important;
+  border-bottom: 2px solid #f1f3f5 !important;
+  padding-bottom: 15px !important;
+  background-color: #ffffff !important;
+}
+
+.wishlist-notice {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 10px !important;
+  margin-top: 15px !important;
+  line-height: 1.5 !important;
+  max-width: 800px !important;
+}
+
+.wishlist-notice i {
+  font-size: 1.1rem !important;
+  line-height: 1.5 !important;
+  flex-shrink: 0 !important;
+}
+
+/* --- ITEMS STACK AND CARD ARCHITECTURE --- */
+.wishlist-items-stack {
+  display: flex !important;
+  flex-direction: column !important;
+  background-color: #ffffff !important;
+  gap: 15px !important;
+}
+
+.wishlist-item-card {
+  display: flex !important;
+  flex-direction: column !important;
+  padding: 24px !important;
+  border: 1px solid #e0e0e0 !important;
+  border-radius: 6px !important;
+  background-color: #ffffff !important;
+}
+
+.card-body-layout {
+  display: flex !important;
+  align-items: stretch !important;
+  width: 100% !important;
+  background-color: #ffffff !important;
+}
+
+/* --- LEFT CONTENT: IMAGE SECTION --- */
+.item-image-container {
+  flex-shrink: 0 !important;
+  width: 120px !important;
+  height: 120px !important;
+  margin-right: 24px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background-color: #ffffff !important;
+}
+
+.item-img {
+  max-width: 100% !important;
+  max-height: 100% !important;
+  object-fit: contain !important;
+}
+
+/* --- MIDDLE CONTENT: TYPOGRAPHY MATCHING CLEARANCE --- */
+.item-details {
+  flex-grow: 1 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+  padding-right: 20px !important;
+  min-width: 0 !important;
+}
+
+.product-title {
+  font-size: 1.15rem !important;
+  font-weight: 500 !important;
+  color: #222222 !important;
+  margin-bottom: 4px !important;
+  line-height: 1.4 !important;
+}
+
+.product-desc {
+  font-size: 0.875rem !important;
+  color: #6c757d !important;
+  margin-bottom: 4px !important;
+}
+
+/* Override Bootstrap .small and .text-muted so colour/size, date, section
+   all match the promotions tile — plain 0.875rem #6c757d, no downsizing */
+.item-details .product-desc.small,
+.item-details .product-desc.text-muted {
+  font-size: 0.875rem !important;
+  color: #6c757d !important;
+  font-weight: 400 !important;
+}
+
+.product-rating {
+  font-size: 0.8rem !important;
+}
+
+/* Rating number text matches promotions tile */
+.product-rating .fw-medium {
+  font-size: 0.8rem !important;
+  color: #000 !important;
+}
+
+/* Stock status: matches promotions tile font-weight: 500 */
+.stock-status {
+  font-weight: 500 !important;
+  font-size: 0.875rem !important;
+}
+
+.text-warning {
+  color: #ffc107 !important;
+}
+
+/* --- RIGHT CONTENT: CONTROLS & PRICING --- */
+.item-controls {
+  flex-shrink: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-end !important;
+  min-width: 200px !important;
+}
+
+.price-container {
+  text-align: right !important;
+}
+
+.current-price {
+  font-size: 1.25rem !important;
+  color: #b85a67 !important;
+}
+
+.original-price {
+  font-size: 0.875rem !important;
+  color: #6c757d !important;
+}
+
+.text-black {
+  color: #000000 !important;
+}
+
+.action-buttons-group {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-end !important;
+  width: 100% !important;
+}
+
+.btn-add-to-cart-green {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  border: 1px solid #000000 !important;
+  border-radius: 0px !important;
+  width: 140px !important;
+  padding: 8px 12px !important;
+  font-size: 0.85rem !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  letter-spacing: 0.5px !important;
+  transition: all 0.2s ease !important;
+}
+
+.btn-add-to-cart-green:hover {
+  background-color: #b85a67 !important;
+  border-color: #b85a67 !important;
+}
+
+/* --- CLEAN REMOVE TRASH ACTION BUTTON BAR --- */
+.actions-wrapper {
+  display: flex !important;
+  align-items: center !important;
+  gap: 15px !important;
+  justify-content: flex-end !important;
+}
+
+.action-btn {
+  font-size: 0.85rem !important;
+  display: flex !important;
+  align-items: center !important;
+  color: #6c757d !important;
+  transition: color 0.15s ease !important;
+  background: none !important;
+  border: none !important;
+  font-weight: 500 !important;
+  padding: 0 !important;
+  cursor: pointer !important;
+}
+
+.action-btn i {
+  font-size: 0.95rem !important;
+}
+
+.remove-btn:hover {
+  color: #1e90ff !important;
+}
+
+.empty-wishlist-pane {
+  padding: 60px 20px !important;
+  color: #6c757d !important;
+}
+
+.empty-wishlist-pane i {
+  font-size: 40px !important;
+  margin-bottom: 12px !important;
+  display: block !important;
+}
+
+/* --- RESPONSIVE ADJUSTMENTS --- */
+@media (max-width: 768px) {
+  .card-body-layout {
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+  }
+
+  .item-image-container {
+    width: 90px !important;
+    height: 90px !important;
+    margin-right: 14px !important;
+    margin-bottom: 0 !important;
+  }
+
+  .item-details {
+    flex-grow: 1 !important;
+    padding-right: 0 !important;
+  }
+
+  .product-title {
+    font-size: 1rem !important;
+  }
+
+  .item-controls {
+    width: 100% !important;
+    align-items: flex-start !important;
+    margin-top: 15px !important;
+    min-width: 0 !important;
+  }
+
+  .price-container,
+  .action-buttons-group,
+  .actions-wrapper {
+    width: 100% !important;
+    justify-content: flex-start !important;
+    align-items: flex-start !important;
+  }
+
+  .price-container {
+    margin-bottom: 10px !important;
+    text-align: left !important;
+  }
+
+  .btn-add-to-cart-green {
+    width: 100% !important;
+  }
+}

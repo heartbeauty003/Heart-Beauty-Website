@@ -1,0 +1,56 @@
+<div class="loyalty-card-container">
+  <div class="card-perspective-wrapper" (click)="toggleCard()">
+    <div class="loyalty-card-inner" [class.is-flipped]="isFlipped">
+
+      <!-- FRONT SIDE -->
+      <div class="card-face card-front">
+        <div class="facet facet-1"></div>
+        <div class="facet facet-2"></div>
+        <div class="facet facet-3"></div>
+        <div class="facet facet-4"></div>
+        <div class="facet facet-5"></div>
+
+        <div class="card-top">
+          <img src="/company-logo-icon.png" alt="Heart Beauty" class="card-logo-icon">
+        </div>
+
+        <div class="card-number-area">
+          <div class="loyalty-brand-text">Heart Beauty Loyalty</div>
+        </div>
+
+        <div class="card-bottom">
+          <div class="card-name">{{ memberName }}</div>
+          <div class="signup-date">{{ signupDate }}</div>
+        </div>
+      </div>
+
+      <!-- BACK SIDE -->
+      <div class="card-face card-back">
+        <div class="magnetic-stripe"></div>
+
+        <div class="signature-container">
+          <div class="signature-strip">
+            <span class="signature-placeholder">{{ signatureInitials }}</span>
+          </div>
+          <div class="cvv-box">
+            <span class="member-number-label">MEMBER NO.</span>
+            <span class="member-number-value">{{ memberNo }}</span>
+          </div>
+        </div>
+
+        <div class="card-back-bottom">
+          <img src="/company-logo-icon.png" alt="Heart Beauty" class="card-logo-icon-back">
+          <div class="card-terms">
+            <p>Heart Beauty Loyalty is a digital membership programme managed by Heart Beauty and is subject to the programme terms and conditions.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <button type="button" class="card-action-text" (click)="toggleCard()">
+    {{ isFlipped ? 'See Card Front' : 'See Member Number' }}
+    <i class="bi bi-chevron-right action-chevron" [class.chevron-flipped]="isFlipped"></i>
+  </button>
+</div>

@@ -1,0 +1,13 @@
+<button class="d-md-none mobile-toggle w-100 d-flex justify-content-between align-items-center" (click)="toggleMobile()">
+  <span class="toggle-label">CUSTOMER SERVICE TOPICS</span>
+  <i class="bi" [ngClass]="isOpen ? 'bi-chevron-up' : 'bi-chevron-down'"></i>
+</button>
+
+<nav class="customer-sidebar" [class.show]="isOpen">
+  <p class="sidebar-heading d-none d-md-block">CUSTOMER SERVICE TOPICS</p>
+  <ul class="nav-list">
+    <li *ngFor="let item of sidebarItems">
+      <a href="#" (click)="scrollToSection(item.id, $event)">{{ item.title }}</a>
+    </li>
+  </ul>
+</nav>

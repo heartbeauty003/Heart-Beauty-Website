@@ -1,0 +1,6 @@
+:host { 
+  display: block; 
+}
+
+/* This page container now strictly handles global layout flow 
+   and has no component-specific UI styling. */

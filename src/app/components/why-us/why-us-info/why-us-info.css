@@ -1,0 +1,128 @@
+:host {
+  display: block;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: #ffffff !important;
+}
+
+.why-us-info-wrapper {
+  background-color: #ffffff !important;
+}
+
+.container-custom {
+  max-width: 1400px !important;
+  margin: 0 auto !important;
+}
+
+.tracking-widest { letter-spacing: 3px !important; }
+.text-pink { color: #b85a67 !important; }
+.font-serif { font-style: italic; font-weight: 300; }
+
+@media (min-width: 768px) {
+  .border-start-md {
+    border-left: 1px solid #dee2e6 !important;
+  }
+}
+
+/* Manifesto Section */
+.manifesto-heading {
+  font-size: 1.75rem;
+  letter-spacing: 1px;
+  line-height: 1.2;
+  color: #000000;
+}
+
+.manifesto-text {
+  font-size: 1.05rem;
+}
+
+/* Pillars Grid Layout */
+.pillars-grid {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: repeat(1, 1fr);
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .pillars-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 1200px) {
+  .pillars-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* Premium Card Design Styling - Crisp, visible borders on solid white */
+.pillar-card {
+  background-color: #ffffff !important;
+  border: 1px solid #dee2e6 !important;
+  position: relative;
+  overflow: hidden;
+  box-shadow: none !important;
+  min-height: 260px;
+}
+
+.pillar-card:hover {
+  transform: translateY(-4px);
+  border-color: #b85a67 !important;
+}
+
+.pillar-icon-box {
+  width: 54px;
+  height: 54px;
+  background-color: #fdf6f7;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.pillar-card:hover .pillar-icon-box {
+  background-color: #b85a67;
+}
+
+.pillar-card:hover .pillar-icon-box i {
+  color: #ffffff !important;
+}
+
+.pillar-title {
+  font-size: 1.05rem;
+  letter-spacing: 0.5px;
+  color: #000000;
+}
+
+.pillar-desc {
+  font-size: 0.88rem;
+  color: #6c757d;
+}
+
+.pillar-corner-accent {
+  width: 0;
+  height: 2px;
+  background-color: #b85a67;
+  transition: width 0.3s ease;
+}
+
+.pillar-card:hover .pillar-corner-accent {
+  width: 100%;
+}
+
+/* Trust Callout Styling */
+.trust-callout-section {
+  background-color: #0a0a0a !important;
+}
+
+/* Commitment Wrapper Formatting */
+.commitment-wrapper {
+  background-color: #ffffff !important;
+}
+
+.commitment-badge {
+  font-size: 15px; /* Increased from 11px to stand out clearly */
+}
+
+.commitment-body {
+  font-size: 1.1rem; /* Slightly balanced up for the larger heading */
+  letter-spacing: 0.2px;
+}
+
+.transition-all {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}

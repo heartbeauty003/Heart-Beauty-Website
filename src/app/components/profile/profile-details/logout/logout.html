@@ -1,0 +1,13 @@
+<div class="logout-confirm-wrapper">
+  <div class="logout-icon-wrap">
+    <i class="bi bi-box-arrow-right"></i>
+  </div>
+  <h2 class="logout-title">Log Out</h2>
+  <p class="logout-subtitle">Are you sure you want to log out of your account?</p>
+  <div class="logout-actions">
+    <button class="btn-confirm-logout" (click)="logout()" [disabled]="isLoading">
+      <i class="bi" [ngClass]="isLoading ? 'bi-arrow-repeat spin' : 'bi-box-arrow-right'"></i>
+      {{ isLoading ? 'Signing Out...' : 'Yes, Log Me Out' }}
+    </button>
+  </div>
+</div>

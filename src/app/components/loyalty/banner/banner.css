@@ -1,0 +1,36 @@
+:host { 
+  display: block !important; 
+  width: 100% !important; 
+  /* Vertical padding prevents it from touching the navbar or other content */
+  padding: 30px 0 !important; 
+}
+
+.banner-container {
+  /* Set to 95% width to be wide, but leave a small gap on the sides */
+  width: 95% !important; 
+  max-width: 1600px !important; 
+  margin: 0 auto !important; 
+  
+  overflow: hidden !important; 
+  background-color: #ffffff !important; 
+  /* Removed border-radius as requested */
+  border-radius: 0 !important; 
+}
+
+.banner-img {
+  width: 100% !important; 
+  height: auto !important; 
+  display: block !important; 
+  object-fit: cover !important; 
+  object-position: center !important; 
+  /* Keeps the banner height controlled */
+  min-height: 250px !important; 
+  max-height: 500px !important; 
+}
+
+@media (max-width: 768px) {
+  .banner-img {
+    min-height: 200px !important; 
+    max-height: 350px !important; 
+  }
+}

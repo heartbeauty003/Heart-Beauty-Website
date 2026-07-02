@@ -1,0 +1,78 @@
+<div class="signup-card-container mx-auto shadow-sm border rounded-4 bg-white">
+  <div class="text-center pb-4 mb-3 border-bottom">
+    <h3 class="form-title text-uppercase fw-bold mb-2">Create Your Member Account</h3>
+    <p class="form-subtitle text-muted mb-0">
+      Fill in your details below to unlock your immediate introductory bonuses.
+    </p>
+  </div>
+
+  <!-- Already a member notice -->
+  <div *ngIf="isAlreadyMember" class="alert alert-success d-flex align-items-center gap-2 rounded-3 mb-4">
+    <i class="bi bi-patch-check-fill fs-5"></i>
+    <span>
+      You are already a Heart Beauty Loyalty member — <strong>{{ user?.loyaltyMemberDetails?.memberNo }}</strong>.
+    </span>
+  </div>
+
+  <!-- Success banner -->
+  <div *ngIf="successMessage" class="alert alert-success text-center rounded-3 mb-4">
+    {{ successMessage }}
+  </div>
+
+  <!-- Error banner -->
+  <div *ngIf="errorMessage" class="alert alert-danger text-center rounded-3 mb-4">
+    {{ errorMessage }}
+  </div>
+
+  <form (submit)="onSubmit($event)" class="row g-4" [class.form-disabled]="isAlreadyMember">
+    <div class="col-md-6">
+      <label class="form-label text-uppercase fw-semibold tracking-wider">First Name</label>
+      <input
+        type="text"
+        class="form-control form-input px-3"
+        placeholder="Enter first name"
+        [(ngModel)]="formData.firstName"
+        name="firstName"
+        [disabled]="isAlreadyMember"
+        required
+      />
+    </div>
+
+    <div class="col-md-6">
+      <label class="form-label text-uppercase fw-semibold tracking-wider">Last Name</label>
+      <input
+        type="text"
+        class="form-control form-input px-3"
+        placeholder="Enter last name"
+        [(ngModel)]="formData.lastName"
+        name="lastName"
+        [disabled]="isAlreadyMember"
+        required
+      />
+    </div>
+
+    <div class="col-12">
+      <label class="form-label text-uppercase fw-semibold tracking-wider">Email Address</label>
+      <input
+        type="email"
+        class="form-control form-input px-3"
+        placeholder="name@domain.com"
+        [(ngModel)]="formData.emailAddress"
+        name="emailAddress"
+        [disabled]="isAlreadyMember"
+        required
+      />
+    </div>
+
+    <div class="col-12 mt-4">
+      <button
+        type="submit"
+        class="btn btn-submit-loyalty w-100 text-uppercase fw-bold py-3"
+        [disabled]="isLoading || isAlreadyMember"
+      >
+        <span *ngIf="isLoading" class="spinner-border spinner-border-sm me-2" role="status"></span>
+        {{ isLoading ? 'Registering...' : 'Join Now — Earn Benefits' }}
+      </button>
+    </div>
+  </form>
+</div>

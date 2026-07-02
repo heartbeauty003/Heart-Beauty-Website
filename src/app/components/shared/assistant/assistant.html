@@ -1,0 +1,77 @@
+@if (showChatbot) {
+  <div class="chat-floating-container border shadow-lg">
+    
+    <div class="chat-header d-flex align-items-center bg-white px-3 py-3">
+      <div class="d-flex align-items-center gap-3">
+        <div class="header-icon-container">
+          <img src="company-logo-icon.png" alt="Icon" class="header-icon">
+          <div class="online-indicator-dot"></div>
+        </div>
+        <h6 class="fw-bold mb-0">Virtual Assistant</h6>
+      </div>
+    </div>
+
+    <div class="chat-body" #chatBody>
+      @for (msg of assistantMessages; track $index) {
+        <div class="message" [class.assistant]="msg.sender === 'assistant'" [class.user]="msg.sender === 'user'">
+          <div class="bubble shadow-sm">
+            {{ msg.text }}
+            @if (msg.time) {
+              <div class="time text-muted mt-1" style="font-size: 10px;">
+                {{ msg.time }}
+              </div>
+            }
+          </div>
+        </div>
+      }
+
+      @if (isTyping) {
+        <div class="message assistant">
+          <div class="bubble typing-bubble shadow-sm">
+            <span class="typing-dot"></span>
+            <span class="typing-dot"></span>
+            <span class="typing-dot"></span>
+          </div>
+        </div>
+      }
+
+      @if (assistantMessages.length <= 2 && !isTyping) {
+        <div class="suggestions-list d-flex flex-column align-items-end gap-2 mt-4">
+          @for (suggestion of suggestions; track suggestion) {
+            <button class="btn btn-primary rounded-pill" (click)="sendSuggestion(suggestion)">
+              {{ suggestion }}
+            </button>
+          }
+        </div>
+      }
+    </div>
+
+    <div class="chat-footer p-3 border-top bg-white">
+      <div class="chat-input-wrapper">
+        <input
+          #messageInput
+          type="text"
+          class="chat-input-field"
+          placeholder="Write your message..."
+          [(ngModel)]="userInput"
+          [disabled]="isTyping"
+          (keyup)="onInputKeyup($event)"
+        >
+        <button class="chat-send-btn" aria-label="Send Message" [disabled]="isTyping" (click)="sendMessage()">
+          <i class="fa-solid fa-paper-plane"></i>
+        </button>
+      </div>
+    </div>
+
+  </div>
+}
+
+<button class="chat-trigger-btn shadow" [class.chat-trigger-open]="showChatbot" (click)="toggleChatbot()" aria-label="Toggle Assistant">
+  @if (!showChatbot) {
+    <img src="company-logo-icon.png" alt="Heart Beauty Icon" class="trigger-icon">
+  } @else {
+    <svg class="close-trigger-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  }
+</button>

@@ -1,0 +1,126 @@
+<div class="content-view-card">
+  <h2 class="content-pane-title">User Details</h2>
+  <p class="content-pane-placeholder">
+    Manage your personal profile metadata, contact configuration options, and public visibility options here.
+  </p>
+
+  @if (isLoading) {
+    <p class="state-text">Loading your details...</p>
+  }
+
+  @if (saveError) {
+    <p class="save-error-text">{{ saveError }}</p>
+  }
+
+  @if (!isLoading) {
+    <form [formGroup]="detailsForm" class="details-form-layout">
+
+      <div class="detail-row">
+        <div class="field-info">
+          <label class="field-label">Title</label>
+          @if (!editStates['title']) {
+            <span class="field-value">{{ detailsForm.get('title')?.value || 'Not specified' }}</span>
+          } @else {
+            <select formControlName="title" class="form-control-inline">
+              <option value="">— Select —</option>
+              <option value="Mr">Mr</option>
+              <option value="Mrs">Mrs</option>
+              <option value="Ms">Ms</option>
+              <option value="Dr">Dr</option>
+            </select>
+          }
+        </div>
+        <div class="field-actions">
+          @if (!editStates['title']) {
+            <button type="button" class="btn-icon" (click)="toggleEdit('title')" aria-label="Edit Title">
+              <i class="bi bi-pencil"></i>
+            </button>
+          } @else {
+            <button type="button" class="btn-text save" [disabled]="isSaving('title')" (click)="saveField('title')">
+              {{ isSaving('title') ? 'Saving…' : 'Save' }}
+            </button>
+            <button type="button" class="btn-text cancel" (click)="cancelEdit('title')">Cancel</button>
+          }
+        </div>
+      </div>
+
+      <div class="detail-row">
+        <div class="field-info">
+          <label class="field-label">First Name</label>
+          @if (!editStates['firstName']) {
+            <span class="field-value">{{ detailsForm.get('firstName')?.value || 'Not specified' }}</span>
+          } @else {
+            <input type="text" formControlName="firstName" class="form-control-inline" placeholder="First name" />
+          }
+        </div>
+        <div class="field-actions">
+          @if (!editStates['firstName']) {
+            <button type="button" class="btn-icon" (click)="toggleEdit('firstName')" aria-label="Edit First Name">
+              <i class="bi bi-pencil"></i>
+            </button>
+          } @else {
+            <button type="button" class="btn-text save"
+              [disabled]="detailsForm.get('firstName')?.invalid || isSaving('firstName')"
+              (click)="saveField('firstName')">
+              {{ isSaving('firstName') ? 'Saving…' : 'Save' }}
+            </button>
+            <button type="button" class="btn-text cancel" (click)="cancelEdit('firstName')">Cancel</button>
+          }
+        </div>
+      </div>
+
+      <div class="detail-row">
+        <div class="field-info">
+          <label class="field-label">Last Name</label>
+          @if (!editStates['lastName']) {
+            <span class="field-value">{{ detailsForm.get('lastName')?.value || 'Not specified' }}</span>
+          } @else {
+            <input type="text" formControlName="lastName" class="form-control-inline" placeholder="Last name" />
+          }
+        </div>
+        <div class="field-actions">
+          @if (!editStates['lastName']) {
+            <button type="button" class="btn-icon" (click)="toggleEdit('lastName')" aria-label="Edit Last Name">
+              <i class="bi bi-pencil"></i>
+            </button>
+          } @else {
+            <button type="button" class="btn-text save"
+              [disabled]="detailsForm.get('lastName')?.invalid || isSaving('lastName')"
+              (click)="saveField('lastName')">
+              {{ isSaving('lastName') ? 'Saving…' : 'Save' }}
+            </button>
+            <button type="button" class="btn-text cancel" (click)="cancelEdit('lastName')">Cancel</button>
+          }
+        </div>
+      </div>
+
+      <div class="detail-row">
+        <div class="field-info">
+          <label class="field-label">Date of Birth</label>
+          @if (!editStates['dob']) {
+            <span class="field-value">
+              {{ detailsForm.get('dob')?.value
+                ? (detailsForm.get('dob')?.value | date:'longDate')
+                : 'Not specified' }}
+            </span>
+          } @else {
+            <input type="date" formControlName="dob" class="form-control-inline" />
+          }
+        </div>
+        <div class="field-actions">
+          @if (!editStates['dob']) {
+            <button type="button" class="btn-icon" (click)="toggleEdit('dob')" aria-label="Edit Date of Birth">
+              <i class="bi bi-pencil"></i>
+            </button>
+          } @else {
+            <button type="button" class="btn-text save" [disabled]="isSaving('dob')" (click)="saveField('dob')">
+              {{ isSaving('dob') ? 'Saving…' : 'Save' }}
+            </button>
+            <button type="button" class="btn-text cancel" (click)="cancelEdit('dob')">Cancel</button>
+          }
+        </div>
+      </div>
+
+    </form>
+  }
+</div>

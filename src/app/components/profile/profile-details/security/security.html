@@ -1,0 +1,64 @@
+<div class="content-view-card">
+  <h2 class="content-pane-title">Security</h2>
+  <p class="content-pane-placeholder">Manage your password and protect your account security settings here.</p>
+
+  <div class="security-operations-box">
+    
+    <!-- Idle State -->
+    @if (authStep === 'idle') {
+      <div class="security-action-row">
+        <div class="action-meta">
+          <h4 class="action-title">Account Password</h4>
+          <p class="action-description">Request a secure link to change your account password.</p>
+        </div>
+        <button type="button" class="btn-trigger-reset" (click)="initiateResetProcess()">Reset Password</button>
+      </div>
+    }
+
+    <!-- Email Request State -->
+    @if (authStep === 'email') {
+      <div class="embedded-reset-card animate-fade-in">
+        <h4 class="form-context-heading">Reset Your Password</h4>
+        <p class="form-context-sub">Enter your email address below and we will send you a password reset link.</p>
+
+        <form [formGroup]="resetForm" (ngSubmit)="handleReset()">
+          <div class="form-floating-custom">
+            <label for="securityResetEmail" class="custom-label">Active Email Address</label>
+            <input type="email" formControlName="email" id="securityResetEmail" class="custom-input-field" placeholder="name@domain.com">
+          </div>
+
+          @if (errorMessage) {
+            <div class="security-error-msg">
+              <i class="bi bi-exclamation-circle-fill"></i> {{ errorMessage }}
+            </div>
+          }
+
+          <div class="mutation-control-group">
+            <button type="submit" class="btn-submit-action" [disabled]="resetForm.invalid || isLoading">
+              @if (isLoading) {
+                <span class="spinner" role="status"></span>
+                <span>Sending...</span>
+              } @else {
+                <span>Send Reset Link</span>
+              }
+            </button>
+            <button type="button" class="btn-cancel-link" (click)="revertToIdle()" [disabled]="isLoading">Cancel</button>
+          </div>
+        </form>
+      </div>
+    }
+
+    <!-- Success Confirmation State -->
+    @if (authStep === 'success') {
+      <div class="embedded-success-pane animate-fade-in">
+        <div class="success-vector">
+          <i class="bi bi-envelope-check-fill"></i>
+        </div>
+        <h5 class="success-heading">Password reset link sent</h5>
+        <p class="success-message">We have sent a password reset link to <strong>{{ resetForm.value.email }}</strong>. Please check your inbox or spam folder.</p>
+        <button type="button" class="btn-return-action" (click)="revertToIdle()">Return to Security</button>
+      </div>
+    }
+
+  </div>
+</div>

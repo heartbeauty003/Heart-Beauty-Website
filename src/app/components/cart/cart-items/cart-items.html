@@ -1,0 +1,116 @@
+<div class="cart-header">
+  <h2 class="fw-bold m-0 fs-3 text-dark">Your Items</h2>
+</div>
+
+<div *ngIf="isLoading" class="text-center py-5">
+  <div class="spinner-border" role="status" style="color: #b85a67;">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+  <p class="mt-3 text-muted">Loading your cart...</p>
+</div>
+
+<div *ngIf="!isLoading && items.length === 0" class="empty-cart-pane text-center text-muted">
+  <i class="bi bi-cart-x"></i>
+  <p class="fs-5 mb-0">Your cart is currently empty.</p>
+</div>
+
+<div class="cart-items-wrapper" *ngIf="!isLoading && items.length > 0">
+  @for (item of items; track item.productId) {
+    <div class="cart-item-card">
+
+      <div class="card-body-layout">
+
+        <!-- LEFT: Product Image -->
+        <div class="item-image-container">
+          <img [src]="item.image" [alt]="item.name" class="item-img">
+        </div>
+
+        <!-- MIDDLE: Product Details -->
+        <div class="item-details">
+          <h3 class="product-title mb-1">{{ item.name }}</h3>
+
+          <!-- Colour / Size / Unit — same pattern as wishlist -->
+          <p class="product-desc mb-1" *ngIf="item.color || item.size != null">
+            {{ item.color }}<span *ngIf="item.color && item.size != null"> · </span><span *ngIf="item.size != null">{{ item.size }} {{ item.unit }}</span>
+          </p>
+
+          <!-- Added date -->
+          <p class="product-desc text-muted small mb-1">Added {{ item.addedAt | date:'mediumDate' }}</p>
+
+          <!-- Section -->
+          <p class="product-desc small text-muted mb-1" *ngIf="item.section">
+            <strong>Section:</strong> {{ formatSection(item.section) }}
+          </p>
+
+          <!-- Star rating -->
+          <div class="product-rating d-flex align-items-center gap-1 mb-1">
+            <div class="d-flex gap-1">
+              <i class="bi text-warning"
+                 *ngFor="let star of getStars(item.rating)"
+                 [ngClass]="{'bi-star-fill': star === 1, 'bi-star-half': star === 0.5, 'bi-star': star === 0}">
+              </i>
+            </div>
+            <span class="small fw-medium text-dark ms-1">{{ item.rating }}</span>
+          </div>
+
+          <!-- Stock status -->
+          <div class="stock-status small mb-2" *ngIf="item.stockCount !== undefined">
+            <span [ngClass]="item.inStock ? 'text-success' : 'text-danger'">
+              <i [ngClass]="item.inStock ? 'bi bi-check-circle-fill' : 'bi bi-x-circle-fill'"></i>
+              {{ item.inStock ? 'In Stock (' + item.stockCount + ')' : 'Out of Stock' }}
+            </span>
+          </div>
+        </div>
+
+        <!-- RIGHT: Price, Quantity & Actions -->
+        <div class="item-controls">
+
+          <!-- Price block — mirrors wishlist with optional original price -->
+          <div class="price-container mb-3">
+            <span class="current-price d-block fw-bold">R {{ item.price.toFixed(2) }}</span>
+            <span class="original-price text-decoration-line-through text-muted small"
+                  *ngIf="item.isDiscounted && item.initialPrice > item.price">
+              R {{ item.initialPrice.toFixed(2) }}
+            </span>
+          </div>
+
+          <!-- Quantity counter -->
+          <div class="quantity-wrapper mb-3">
+            <span class="qty-label text-muted small me-2">Qty:</span>
+            <div class="quantity-counter">
+              <button type="button" class="counter-btn minus-btn"
+                      (click)="decreaseQuantity(item)"
+                      [disabled]="item.quantity <= 1">
+                -
+              </button>
+              <span class="counter-value">{{ item.quantity }}</span>
+              <button type="button" class="counter-btn plus-btn"
+                      (click)="increaseQuantity(item)">
+                +
+              </button>
+            </div>
+          </div>
+
+          <!-- Remove / Move to List -->
+          <div class="actions-wrapper">
+            <button type="button" class="action-btn remove-btn" (click)="removeItem(item)">
+              <i class="bi bi-trash-fill me-1"></i>Remove
+            </button>
+            <button type="button" class="action-btn move-btn" (click)="moveToList(item)">
+              <i class="bi bi-heart-fill me-1"></i>Move to List
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Total row -->
+      <div class="card-total-row">
+        <span class="total-label">Total:</span>
+        <span class="total-amount">R {{ (item.price * item.quantity).toFixed(2) }}</span>
+        <span class="total-note">(as per quantity selected)</span>
+      </div>
+
+    </div>
+  }
+</div>

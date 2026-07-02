@@ -1,0 +1,111 @@
+:host { 
+  display: block; 
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
+}
+
+/* Toast Notification Styles */
+.toast-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  pointer-events: none;
+}
+
+.wishlist-toast {
+  background-color: #ffffff;
+  border: 1px solid #28a745;
+  color: #28a745;
+  padding: 12px 20px;
+  border-radius: 4px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  animation: fadeInOut 1.5s ease-in-out forwards;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translateY(-20px); }
+  15% { opacity: 1; transform: translateY(0); }
+  85% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-20px); }
+}
+
+/* Section Heading Styling */
+.section-title {
+  font-size: 1.5rem;
+  font-weight: 900 !important;
+  letter-spacing: 0.02em;
+  color: #000;
+}
+
+.section-subtitle {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #333 !important;
+}
+
+/* Carousel/Viewport */
+.carousel-viewport { width: 100%; overflow-x: auto; scroll-behavior: smooth; scrollbar-width: none; }
+.carousel-viewport::-webkit-scrollbar { display: none; }
+.btn-arrow { background: none; border: none; font-size: 1.25rem; color: #000; cursor: pointer; }
+
+/* Product Cards */
+.product-card { position: relative; width: calc(25% - 12px); min-width: 280px; }
+.card-image-wrapper { position: relative; overflow: hidden; width: 100%; aspect-ratio: 1 / 1.35; background-color: #f5f5f5; }
+.product-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* Wishlist Icon Button */
+.wishlist-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 5;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+  transition: transform 0.15s ease;
+}
+.wishlist-btn:active { transform: scale(0.85); }
+
+/* Wishlist Heart States */
+.heart-unselected { color: #ffffff; -webkit-text-stroke: 1.5px #000000; }
+.heart-selected { color: #ff0000; -webkit-text-stroke: 1.5px #ff0000; }
+
+/* Badge System */
+.product-badge { position: absolute; left: -5px; font-size: 10px; font-weight: 500; padding: 3px 6px; z-index: 4; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+
+/* Bestseller Badge (Pink) */
+.bestseller-badge { top: 16px; background-color: #b85a67 !important; color: #ffffff !important; }
+
+/* New Badge (White) */
+.secondary-badge { top: 40px; background-color: #ffffff !important; color: #000000 !important; }
+
+/* Typography */
+.product-title { font-size: 1rem; font-weight: 500; color: #000; }
+.product-desc { font-size: 0.875rem; color: #6c757d; }
+.product-rating { font-size: 0.8rem; }
+.text-pink { color: #b85a67; }
+.text-black { color: #000000; }
+.text-warning { color: #ffc107; }
+.current-price { font-size: 1rem; font-weight: 600; }
+.original-price { font-size: 0.875rem; color: #6c757d; }
+
+/* Add to Cart */
+.btn-add-to-cart { position: absolute; bottom: 16px; left: 50%; width: calc(100% - 32px); background: #000; color: #fff; padding: 12px 0; border: 1.5px solid #000; margin: 0; box-sizing: border-box; transform: translate(-50%, 20px); opacity: 0; transition: 0.25s; z-index: 3; }
+.product-card:hover .btn-add-to-cart { transform: translate(-50%, 0); opacity: 1; }
+.btn-add-to-cart:hover { background: #b85a67; border-color: #b85a67; }
+
+/* Stock Status */
+.stock-status { font-weight: 500; }
+
+/* View All */
+.btn-view-all { background: #000; color: #fff !important; padding: 14px 44px; border: 1px solid #000; transition: 0.2s; cursor: pointer; }
+.btn-view-all:hover { background: #b85a67; border-color: #b85a67; }

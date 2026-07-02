@@ -1,0 +1,247 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+:host {
+  display: block;
+  width: 100%;
+  background-color: #ffffff;
+}
+
+.products-highlight-section {
+  padding: 80px 24px;
+  display: flex;
+  justify-content: center;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.container {
+  max-width: 1200px;
+  width: 100%;
+}
+
+.title-container {
+  margin-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.section-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 3rem;
+  font-weight: 700;
+  color: #000000;
+  margin: 0 0 16px 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.divider {
+  width: 60px;
+  height: 2px;
+  background-color: #c5a059;
+  margin-bottom: 20px;
+}
+
+.section-subtitle {
+  max-width: 720px;
+  margin: 0;
+  font-size: 1.15rem;
+  line-height: 1.7;
+  font-weight: 400;
+  color: #555555;
+}
+
+/* ── Carousel View (Mobile AND Desktop) ────────────────────────────── */
+
+.carousel-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #c5a059;
+  border: none;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.nav-btn:hover {
+  background-color: #ffffff;
+}
+
+.nav-btn:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+.prev-btn {
+  left: -10px;
+}
+
+.next-btn {
+  right: -10px;
+}
+
+.products-list-view {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: 16px;
+  /* Removed padding-bottom so the default scrollbar is totally hidden.
+     We are using our custom progress bar instead. */
+  scrollbar-width: none; /* Firefox */
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Hide default scrollbar for Chrome/Safari */
+.products-list-view::-webkit-scrollbar {
+  display: none;
+}
+
+.product-item {
+  flex: 0 0 85%;
+  scroll-snap-align: center;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.product-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  border-radius: 4px;
+}
+
+/* Custom Progress Bar */
+.progress-container {
+  width: 100%;
+  height: 6px;
+  background-color: #f0f0f0;
+  border-radius: 4px;
+  margin-top: 24px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: #c5a059;
+  width: 0%;
+  border-radius: 4px;
+  transition: width 0.15s ease-out; /* Smooth transition when scrolling */
+}
+
+/* ── Responsive item sizing (carousel behavior preserved at all sizes) ── */
+
+@media (min-width: 600px) {
+  .product-item {
+    flex: 0 0 45%;
+  }
+
+  .nav-btn {
+    width: 48px;
+    height: 48px;
+    font-size: 22px;
+  }
+
+  .prev-btn {
+    left: -16px;
+  }
+
+  .next-btn {
+    right: -16px;
+  }
+}
+
+@media (min-width: 992px) {
+  .product-item {
+    flex: 0 0 30.5%;
+  }
+
+  .products-highlight-section {
+    padding: 100px 40px;
+  }
+
+  .prev-btn {
+    left: -24px;
+  }
+
+  .next-btn {
+    right: -24px;
+  }
+
+  .product-item:hover {
+    transform: translateY(-8px);
+  }
+}
+
+/* ── Modal Overlay View ────────────────────────────────────────────── */
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.92);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  animation: fadeIn 0.3s ease-in-out;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.modal-content {
+  position: relative;
+  max-width: 90%;
+  max-height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-img {
+  max-width: 100%;
+  max-height: 90vh;
+  object-fit: contain;
+  display: block;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.close-btn {
+  position: absolute;
+  top: -40px;
+  right: 0;
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 2.5rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.close-btn:hover {
+  color: #c5a059;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

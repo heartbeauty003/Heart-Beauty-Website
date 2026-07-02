@@ -1,0 +1,301 @@
+:host {
+  display: block;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* --- THE FLOATING ACTION TRIGGER BUTTON --- */
+button.chat-trigger-btn {
+  position: fixed !important;
+  bottom: 25px !important;
+  right: 25px !important;
+  width: 60px !important;
+  height: 60px !important;
+  border-radius: 50% !important;
+  background-color: #ffffff !important;
+  border: 1px solid #eee !important;
+  z-index: 100001 !important; 
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 !important;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15) !important;
+  cursor: pointer !important;
+  transition: transform 0.2s ease, background-color 0.2s ease !important;
+}
+
+button.chat-trigger-btn:hover {
+  transform: scale(1.05);
+}
+
+/* Dynamically transformed state when chat box is open */
+button.chat-trigger-btn.chat-trigger-open {
+  background-color: #000000 !important;
+  border: none !important;
+}
+
+.trigger-icon {
+  width: 38px !important;
+  height: 38px !important;
+  object-fit: contain !important;
+  display: block !important;
+  margin: 0 auto !important;
+}
+
+/* Customized Thin SVG Close Icon Alignment Rules */
+svg.close-trigger-icon {
+  width: 24px !important;
+  height: 24px !important;
+  color: #ffffff !important;
+  display: block !important;
+  flex-shrink: 0 !important;
+}
+
+/* --- THE CHAT WINDOW CONTAINER --- */
+div.chat-floating-container {
+  position: fixed !important;
+  z-index: 100000 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  background: #ffffff !important;
+  border-radius: 16px !important;
+  overflow: hidden !important;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.15) !important;
+  border: 1px solid #efefef !important;
+  
+  /* Stacked directly above the action button layout */
+  bottom: 100px !important; 
+  right: 25px !important;
+  width: 380px !important;
+  height: 550px !important;
+}
+
+/* --- THE HEADER --- */
+div.chat-header {
+  padding: 18px 20px !important; 
+  background: #ffffff !important;
+  border-bottom: 1px solid #f0f0f0 !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.header-icon-container {
+  position: relative !important;
+  width: 38px !important;
+  height: 38px !important;
+  background: #fff !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin-left: 2px !important; 
+}
+
+.header-icon {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+}
+
+.online-indicator-dot {
+  position: absolute !important;
+  bottom: -2px !important;
+  right: -2px !important;
+  width: 12px !important;
+  height: 12px !important;
+  background: #198754 !important; 
+  border: 2px solid white !important;
+  border-radius: 50% !important;
+}
+
+/* --- BODY & BUBBLES --- */
+div.chat-body {
+  flex: 1 !important;
+  background-color: #f9f9f9 !important;
+  overflow-y: auto !important;
+  padding: 20px !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.bubble {
+  background: #ffffff !important;
+  border-radius: 12px !important;
+  max-width: 85% !important;
+  font-size: 14px !important;
+  padding: 12px 15px !important;
+  border: 1px solid #efefef !important;
+  color: #333333 !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05) !important;
+}
+
+.suggestions-list {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-end !important;
+  gap: 8px !important;
+  margin-top: auto !important;
+  padding-top: 20px !important;
+}
+
+.suggestions-list button.btn-primary {
+  background-color: #0b79bf !important;
+  border: none !important;
+  font-size: 13px !important;
+  padding: 8px 18px !important;
+  font-weight: 500 !important;
+  color: #ffffff !important;
+  border-radius: 50px !important;
+  width: max-content !important;
+  cursor: pointer !important;
+}
+
+.suggestions-list button.btn-primary:hover {
+  background-color: #0966a3 !important;
+}
+
+/* --- FOOTER INPUT CONTROL BAR --- */
+div.chat-footer {
+  padding: 15px 20px !important;
+  border-top: 1px solid #f0f0f0 !important;
+  background: #ffffff !important;
+}
+
+div.chat-input-wrapper {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  width: 100% !important;
+  background: #ffffff !important;
+  flex-wrap: nowrap !important;
+}
+
+input.chat-input-field {
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  font-size: 14px !important;
+  background: transparent !important;
+  flex: 1 !important;
+  padding: 5px 0 !important;
+  margin: 0 !important;
+  color: #333333 !important;
+}
+
+button.chat-send-btn {
+  background: none !important;
+  background-color: transparent !important;
+  border: none !important;
+  border-style: none !important;
+  padding: 0 !important;
+  margin: 0 0 0 10px !important;
+  outline: none !important;
+  box-shadow: none !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+  width: auto !important;
+  height: auto !important;
+}
+
+button.chat-send-btn i {
+  font-size: 20px !important;
+  color: #0b79bf !important;
+  background: none !important;
+  border: none !important;
+  transition: color 0.2s ease, transform 0.2s ease !important;
+}
+
+button.chat-send-btn:hover i {
+  color: #0966a3 !important;
+  transform: scale(1.1) !important;
+}
+
+button.chat-send-btn:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* --- RESPONSIVENESS OVERRIDES --- */
+@media (max-width: 576px) {
+  div.chat-floating-container {
+    right: auto !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: 92% !important; 
+    height: 68vh !important;
+    bottom: 95px !important;
+  }
+}
+
+/* --- MESSAGE ALIGNMENT (assistant left / customer right) ---
+   The template now renders both .message.assistant and .message.user.
+   Previously only assistant messages existed, so there was no alignment
+   rule at all — .bubble above still governs the base look for both. */
+div.message {
+  display: flex !important;
+  width: 100% !important;
+  margin-bottom: 12px !important;
+}
+
+div.message.assistant {
+  justify-content: flex-start !important;
+}
+
+div.message.user {
+  justify-content: flex-end !important;
+}
+
+/* --- CUSTOMER BUBBLE VARIANT ---
+   Same shape/padding/font as .bubble above, recolored to the site's gold
+   accent so customer messages read as distinct from assistant replies. */
+div.message.user .bubble {
+  background: #c5a059 !important;
+  border: 1px solid #c5a059 !important;
+  color: #ffffff !important;
+}
+
+div.message.user .bubble .time {
+  color: rgba(255, 255, 255, 0.75) !important;
+}
+
+/* --- TYPING INDICATOR ("...") ---
+   Shown for ~3s after the customer sends a message, before the assistant
+   reply appears. Reuses the same .bubble shape/shadow, just with dots
+   instead of text. */
+.typing-bubble {
+  display: flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  padding: 14px 16px !important;
+}
+
+.typing-dot {
+  width: 6px !important;
+  height: 6px !important;
+  border-radius: 50% !important;
+  background-color: #b0b0b0 !important;
+  display: inline-block !important;
+  animation: typingBounce 1.2s infinite ease-in-out !important;
+}
+
+.typing-dot:nth-child(2) {
+  animation-delay: 0.15s !important;
+}
+
+.typing-dot:nth-child(3) {
+  animation-delay: 0.3s !important;
+}
+
+@keyframes typingBounce {
+  0%, 60%, 100% {
+    transform: translateY(0);
+    opacity: 0.5;
+  }
+  30% {
+    transform: translateY(-4px);
+    opacity: 1;
+  }
+}

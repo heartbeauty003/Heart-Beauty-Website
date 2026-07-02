@@ -1,0 +1,34 @@
+<div class="cart-container">
+  <div class="cart-header">
+    <h2 class="fw-bold m-0 fs-3">Your Shopping Cart</h2>
+  </div>
+
+  <div class="cart-layout">
+    <section class="left-col">
+      <app-cart-items
+        (itemsChanged)="onItemsChanged($event)">
+      </app-cart-items>
+    </section>
+
+    <aside class="right-col">
+      <app-order-summary
+        [items]="checkoutItems"
+        [total]="calculateTotal()"
+        [totalItems]="getTotalItemCount()"
+        (checkoutComplete)="onCheckoutSuccess()">
+      </app-order-summary>
+    </aside>
+  </div>
+</div>
+
+<!-- Clear Cart Modal -->
+<div class="modal-backdrop" *ngIf="showClearModal()">
+  <div class="modal-box">
+    <h4 class="modal-title">Order Placed?</h4>
+    <p class="modal-body-text">Have you successfully placed your order via WhatsApp or Email? Would you like to clear your cart?</p>
+    <div class="modal-actions">
+      <button class="btn-modal-yes" (click)="confirmClearCart()">Yes, clear my cart</button>
+      <button class="btn-modal-no"  (click)="dismissModal()">No, keep my cart</button>
+    </div>
+  </div>
+</div>

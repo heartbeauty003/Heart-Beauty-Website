@@ -1,0 +1,65 @@
+<section class="reviews-section w-100 py-5 bg-white">
+  <div class="container-fluid px-3 px-md-4 px-lg-5">
+
+    <div class="mb-4">
+      <h2 class="section-title text-uppercase mb-1">What Our Customers Say</h2>
+      <p class="section-subtitle text-muted mb-0">Real reviews from real people.</p>
+    </div>
+
+    <div *ngIf="isLoading" class="text-center py-5">
+      <div class="spinner-border" role="status" style="color: #b85a67;">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+
+    <div class="carousel-outer" *ngIf="!isLoading">
+      <button class="btn-chevron left" (click)="scrollCarousel('left')"><i class="bi bi-chevron-left"></i></button>
+
+      <div class="carousel-viewport" #carouselViewport>
+        <div class="carousel-track d-flex gap-3">
+
+          <div class="review-card flex-shrink-0" *ngFor="let review of reviews" (click)="openModal(review)">
+            <div class="review-img-wrapper">
+              <img [src]="review.img" [alt]="review.name" class="review-img">
+            </div>
+            <div class="review-body">
+              <div class="review-stars d-flex gap-1 mb-2">
+                <ng-container *ngFor="let star of [1,2,3,4,5]">
+                  <i class="bi text-warning"
+                     [class.bi-star-fill]="star <= review.rating"
+                     [class.bi-star]="star > review.rating"></i>
+                </ng-container>
+              </div>
+              <h4 class="reviewer-name mb-1">{{ review.name }} <i class="bi bi-patch-check-fill verified-icon"></i></h4>
+              <p class="review-text mb-0">{{ review.shortText }}</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <button class="btn-chevron right" (click)="scrollCarousel('right')"><i class="bi bi-chevron-right"></i></button>
+    </div>
+
+  </div>
+</section>
+
+<div class="review-modal-overlay" *ngIf="selectedReview" (click)="closeModal()">
+  <div class="review-modal" (click)="$event.stopPropagation()">
+    <button class="modal-close" (click)="closeModal()"><i class="bi bi-x-lg"></i></button>
+    <div class="modal-img-wrapper">
+      <img [src]="selectedReview.img" [alt]="selectedReview.name" class="modal-img">
+    </div>
+    <div class="modal-body">
+      <div class="review-stars d-flex gap-1 mb-2 justify-content-center">
+        <ng-container *ngFor="let star of [1,2,3,4,5]">
+          <i class="bi"
+             [class.bi-star-fill]="star <= selectedReview.rating"
+             [class.bi-star]="star > selectedReview.rating"></i>
+        </ng-container>
+      </div>
+      <h4 class="reviewer-name mb-2">{{ selectedReview.name }} <i class="bi bi-patch-check-fill verified-icon"></i></h4>
+      <p class="modal-review-text">{{ selectedReview.fullText }}</p>
+    </div>
+  </div>
+</div>

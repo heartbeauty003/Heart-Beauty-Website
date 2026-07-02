@@ -1,0 +1,66 @@
+<section class="best-sellers-section w-100 py-5 bg-white">
+
+  <div class="toast-container">
+    <div class="wishlist-toast" *ngFor="let toast of activeToasts">
+      <i class="bi bi-check-circle-fill text-success me-2"></i>
+      {{ toast.type === 'cart' ? 'Item Added To Cart' : 'Item Added To Wishlist' }}
+    </div>
+  </div>
+
+  <div class="container-fluid px-3 px-md-4 px-lg-5">
+
+    <div class="d-flex justify-content-between align-items-end mb-4">
+      <div>
+        <h2 class="section-title text-uppercase mb-1">Trending Looks, Best Sellers</h2>
+        <p class="section-subtitle text-muted mb-0">Don't miss the most popular looks flying off the shelves.</p>
+      </div>
+      <div class="carousel-controls d-flex gap-3">
+        <button class="btn-arrow" (click)="scrollCarousel('left')"><i class="bi bi-arrow-left"></i></button>
+        <button class="btn-arrow" (click)="scrollCarousel('right')"><i class="bi bi-arrow-right"></i></button>
+      </div>
+    </div>
+
+    <div *ngIf="isLoading" class="text-center py-5">
+      <div class="spinner-border" role="status" style="color: #b85a67;">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+
+    <div class="carousel-viewport" #carouselViewport *ngIf="!isLoading && !hasError">
+      <div class="carousel-track d-flex gap-3">
+
+        <div class="product-card flex-shrink-0" *ngFor="let product of products">
+
+          <span class="product-badge bestseller-badge position-absolute text-uppercase">BESTSELLER</span>
+
+          <button class="wishlist-btn" (click)="toggleWishlist(product, $event)">
+            <i class="bi bi-heart-fill" [ngClass]="product.isWishlisted ? 'heart-selected' : 'heart-unselected'"></i>
+          </button>
+
+          <div class="card-image-wrapper">
+            <img [src]="product.img" [alt]="product.title" class="product-img">
+            <button class="btn-add-to-cart text-uppercase fw-semibold" (click)="addToCart(product, $event)">Add To Cart</button>
+          </div>
+          <div class="product-details pt-3">
+            <h3 class="product-title mb-1">{{ product.title }}</h3>
+            <p class="product-desc mb-1">{{ product.desc }}</p>
+            <div class="product-rating d-flex gap-1 mb-1">
+              <i class="bi text-warning" [ngClass]="{'bi-star-fill': star === 1, 'bi-star-half': star === 0.5, 'bi-star': star === 0}" *ngFor="let star of product.stars"></i>
+            </div>
+            <div class="product-pricing d-flex gap-2 align-items-center mb-1">
+              <span class="current-price text-pink">{{ product.currentPrice }}</span>
+              <span class="original-price text-decoration-line-through text-black" *ngIf="product.originalPrice">{{ product.originalPrice }}</span>
+            </div>
+            <div class="stock-status" [ngClass]="product.inStock ? 'text-success' : 'text-danger'">{{ product.stock }}</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="w-100 d-flex justify-content-center pt-5">
+      <a routerLink="/trending-now" class="btn-view-all text-uppercase text-decoration-none fw-semibold">View All - Best Sellers</a>
+    </div>
+
+  </div>
+</section>

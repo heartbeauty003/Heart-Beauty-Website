@@ -1,0 +1,121 @@
+:host { 
+  display: block; 
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
+}
+
+/* Section */
+.loyalty-section { background: #ffffff; color: #333; padding: 80px 0; position: relative; }
+.loyalty-section::before, .loyalty-section::after { content: ''; position: absolute; left: 50%; transform: translateX(-50%); width: 90%; max-width: 1200px; height: 1px; background: #e0e0e0; }
+.loyalty-section::before { top: 0; }
+.loyalty-section::after { bottom: 0; }
+
+.loyalty-inner { max-width: 1200px; margin: 0 auto; padding: 0 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+
+/* Left */
+.loyalty-eyebrow { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; color: #b85a67; margin-bottom: 12px; display: block; }
+.loyalty-title { font-size: 2.5rem; font-weight: 700; line-height: 1.2; margin-bottom: 16px; color: #000; }
+.loyalty-subtitle { font-size: 0.95rem; color: #666; line-height: 1.7; margin-bottom: 36px; max-width: 480px; }
+
+/* Perks */
+.loyalty-perks { display: flex; flex-direction: column; gap: 20px; margin-bottom: 40px; }
+.perk { display: flex; align-items: flex-start; gap: 16px; }
+.perk-icon { font-size: 1.2rem; color: #b85a67; margin-top: 2px; flex-shrink: 0; }
+.perk-title { font-size: 0.95rem; font-weight: 600; color: #000; margin-bottom: 2px; }
+.perk-desc { font-size: 0.825rem; color: #666; margin: 0; }
+
+/* CTA */
+.btn-loyalty { display: inline-block; background: #b85a67; color: #fff !important; padding: 14px 44px; border: 1px solid #b85a67; transition: 0.2s; font-size: 0.875rem; text-decoration: none; }
+.btn-loyalty:hover { background: transparent; color: #b85a67 !important; border-color: #b85a67; }
+
+/* ----------------------------------------------------- */
+/* CARD STYLING (EXACT MATCH WITH CONTAINER QUERY UNITS) */
+/* ----------------------------------------------------- */
+
+.loyalty-right { display: flex; align-items: center; justify-content: center; width: 100%; }
+
+/* The wrapper establishes the container for the `cqi` scaling */
+.loyalty-card-wrapper {
+  width: 100%;
+  max-width: 380px;
+  aspect-ratio: 1.586 / 1;
+  container-type: inline-size;
+}
+
+.loyalty-card { 
+  width: 100%; 
+  height: 100%;
+  position: relative; 
+  border-radius: 5.26cqi; 
+  padding: 6.31cqi 7.36cqi; 
+  display: flex; 
+  flex-direction: column; 
+  justify-content: space-between; 
+  box-shadow: 0 6.57cqi 13.15cqi rgba(184,90,103,0.35), 0 2.1cqi 5.26cqi rgba(184,90,103,0.25), inset 0 0 0 1px rgba(255,255,255,0.12); 
+  background: linear-gradient(160deg, #c96b7a 0%, #b85a67 35%, #9e3f50 70%, #7a2d3a 100%); 
+  color: #fff; 
+  overflow: hidden; 
+}
+
+/* Gloss overlay */
+.loyalty-card::after { 
+  content: ''; 
+  position: absolute; 
+  inset: 0; 
+  background: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, transparent 50%, rgba(0,0,0,0.1) 100%); 
+  border-radius: 5.26cqi; 
+  pointer-events: none; 
+  z-index: 5;
+}
+
+/* Geometric Facets strictly scaled with cqi */
+.facet { position: absolute; pointer-events: none; }
+.facet-1 { width: 57.89cqi; height: 57.89cqi; background: linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,255,255,0.05)); clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); top: -15.78cqi; right: -10.52cqi; transform: rotate(20deg); }
+.facet-2 { width: 42.10cqi; height: 42.10cqi; background: linear-gradient(135deg, rgba(255,255,255,0.15), rgba(255,255,255,0.03)); clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); top: 5.26cqi; right: 15.78cqi; transform: rotate(45deg); }
+.facet-3 { width: 34.21cqi; height: 34.21cqi; background: linear-gradient(135deg, rgba(0,0,0,0.1), rgba(0,0,0,0.03)); clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); bottom: -7.89cqi; left: -5.26cqi; transform: rotate(15deg); }
+.facet-4 { width: 26.31cqi; height: 26.31cqi; background: rgba(255,255,255,0.06); clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); bottom: 7.89cqi; right: 21.05cqi; transform: rotate(30deg); }
+.facet-5 { width: 21.05cqi; height: 21.05cqi; background: rgba(0,0,0,0.1); clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); top: 13.15cqi; left: 10.52cqi; transform: rotate(10deg); }
+
+/* Card Top */
+.card-top { display: flex; justify-content: space-between; align-items: flex-start; position: relative; z-index: 10; }
+.card-logo-icon { height: 10cqi; width: auto; object-fit: contain; filter: brightness(0) invert(1) drop-shadow(0 0.52cqi 1.05cqi rgba(0,0,0,0.3)); }
+
+/* Card Middle (Heart Beauty Loyalty Text) */
+.card-number-area { 
+  position: relative; 
+  z-index: 10; 
+  margin-top: 5.78cqi; 
+  margin-bottom: 5.78cqi; 
+  text-align: left;
+}
+.loyalty-brand-text { 
+  color: #fcb4cb;
+  font-size: 6.73cqi;
+  font-weight: 700;
+  font-family: 'Times New Roman', Times, serif;
+  background: linear-gradient(135deg, #ffd9e6 0%, #fcb4cb 30%, #f5839e 50%, #fcb4cb 70%, #ffd9e6 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 3.15cqi rgba(252, 180, 203, 0.5);
+  white-space: nowrap;
+  line-height: 1.4;
+  display: inline-block;
+  padding-bottom: 1.05cqi;
+  overflow: visible;
+}
+
+/* Card Bottom (Maintained for structural height but hidden in HTML via inline styles) */
+.card-bottom { display: flex; justify-content: space-between; align-items: flex-end; position: relative; z-index: 10; }
+.card-name { font-size: 4cqi; font-weight: 500; letter-spacing: 0.06em; color: rgba(255,255,255,0.95); text-transform: uppercase; }
+.signup-date { font-size: 2.94cqi; font-weight: 500; letter-spacing: 0.04em; color: rgba(255,255,255,0.75); font-family: 'Courier New', Courier, monospace; white-space: nowrap; }
+
+/* Responsive adjustments for external layout only */
+@media (max-width: 900px) {
+  .loyalty-inner { grid-template-columns: 1fr; gap: 48px; padding: 0 24px; }
+  .loyalty-right { justify-content: flex-start; }
+  .loyalty-title { font-size: 1.8rem; }
+}
+@media (max-width: 600px) {
+  .loyalty-section { padding: 60px 0; }
+  /* Card wrapper naturally spans full width of container, downscaling the CQI units inside */
+}

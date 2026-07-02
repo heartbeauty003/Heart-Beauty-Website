@@ -1,0 +1,285 @@
+:host {
+  display: block;
+  width: 100%;
+  background-color: #ffffff !important;
+}
+
+.content-view-card {
+  background-color: #ffffff !important;
+  border: 1px solid #e5e5e5 !important;
+  padding: 40px !important;
+  min-height: 450px !important;
+}
+
+.content-pane-title {
+  font-size: 20px !important;
+  font-weight: 600 !important;
+  letter-spacing: 1px !important;
+  text-transform: uppercase !important;
+  color: #000000 !important;
+  margin-bottom: 24px !important;
+  border-bottom: 1px solid #e5e5e5 !important;
+  padding-bottom: 16px !important;
+}
+
+.content-pane-placeholder {
+  font-size: 14px !important;
+  color: #666666 !important;
+  line-height: 1.7 !important;
+  margin-bottom: 32px !important;
+}
+
+.security-operations-box {
+  max-width: 650px !important;
+  background-color: #ffffff !important;
+}
+
+.security-action-row {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  padding: 24px !important;
+  border: 1px solid #e5e5e5 !important;
+  background-color: #ffffff !important;
+}
+
+.action-meta {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 6px !important;
+  background-color: #ffffff !important;
+}
+
+.action-title {
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  color: #000000 !important;
+  margin: 0 !important;
+}
+
+.action-description {
+  font-size: 13px !important;
+  color: #666666 !important;
+  margin: 0 !important;
+  line-height: 1.5 !important;
+}
+
+.btn-trigger-reset {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  border: 1px solid #000000 !important;
+  padding: 12px 24px !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+}
+
+.btn-trigger-reset:hover {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+
+.embedded-reset-card {
+  border: 1px solid #e5e5e5 !important;
+  padding: 30px !important;
+  background-color: #ffffff !important;
+}
+
+.form-context-heading {
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  color: #000000 !important;
+  margin: 0 0 6px 0 !important;
+}
+
+.form-context-sub {
+  font-size: 13px !important;
+  color: #666666 !important;
+  margin: 0 0 24px 0 !important;
+}
+
+.form-floating-custom {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 8px !important;
+  margin-bottom: 20px !important;
+  background-color: #ffffff !important;
+}
+
+.custom-label {
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  color: #333333 !important;
+}
+
+.custom-input-field {
+  width: 100% !important;
+  padding: 12px 14px !important;
+  font-size: 14px !important;
+  border: 1px solid #e5e5e5 !important;
+  outline: none !important;
+  background-color: #ffffff !important;
+}
+
+.custom-input-field:focus {
+  border-color: #000000 !important;
+}
+
+.security-error-msg {
+  color: #b82c3e !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  margin-bottom: 20px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  background-color: #ffffff !important;
+}
+
+.mutation-control-group {
+  display: flex !important;
+  align-items: center !important;
+  gap: 20px !important;
+  background-color: #ffffff !important;
+}
+
+.btn-submit-action {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  border: none !important;
+  padding: 14px 28px !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+.btn-submit-action:disabled {
+  background-color: #cccccc !important;
+  cursor: not-allowed !important;
+}
+
+.btn-cancel-link {
+  background: transparent !important;
+  border: none !important;
+  color: #666666 !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  cursor: pointer !important;
+}
+
+.btn-cancel-link:hover {
+  color: #000000 !important;
+}
+
+.embedded-success-pane {
+  border: 1px solid #e5e5e5 !important;
+  padding: 40px 30px !important;
+  text-align: center !important;
+  background-color: #ffffff !important;
+}
+
+.success-vector {
+  font-size: 40px !important;
+  color: #2e7d32 !important;
+  margin-bottom: 16px !important;
+  background-color: #ffffff !important;
+}
+
+.success-heading {
+  font-size: 18px !important;
+  font-weight: 600 !important;
+  color: #000000 !important;
+  margin-bottom: 12px !important;
+}
+
+.success-message {
+  font-size: 14px !important;
+  color: #555555 !important;
+  line-height: 1.6 !important;
+  max-width: 480px !important;
+  margin: 0 auto 24px auto !important;
+  background-color: #ffffff !important;
+}
+
+.btn-return-action {
+  background-color: transparent !important;
+  border: 1px solid #e5e5e5 !important;
+  color: #000000 !important;
+  padding: 12px 24px !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+}
+
+.btn-return-action:hover {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  border-color: #000000 !important;
+}
+
+.spinner {
+  width: 16px !important;
+  height: 16px !important;
+  border: 2px solid #ffffff !important;
+  border-bottom-color: transparent !important;
+  border-radius: 50% !important;
+  display: inline-block !important;
+  animation: rotation 0.6s linear infinite !important;
+}
+
+@keyframes rotation {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out forwards !important;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 767px) {
+  .content-view-card {
+    padding: 30px 20px !important;
+    border-left: none !important;
+    border-right: none !important;
+    min-height: auto !important;
+  }
+
+  .security-action-row {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 20px !important;
+  }
+
+  .btn-trigger-reset {
+    width: 100% !important;
+    text-align: center !important;
+  }
+
+  .mutation-control-group {
+    flex-direction: column !important;
+    gap: 16px !important;
+  }
+
+  .btn-submit-action {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+}

@@ -1,0 +1,90 @@
+<div class="content-view-card">
+  <h2 class="content-pane-title">Address Book</h2>
+  <p class="content-pane-placeholder">
+    Manage your delivery address for orders and collections.
+  </p>
+
+  <!-- Loading -->
+  <p *ngIf="isLoading" class="state-text">Loading address...</p>
+
+  <!-- No address yet — show Add button -->
+  <ng-container *ngIf="!isLoading && !currentAddress && !isAdding && !isEditing">
+    <p class="state-text">You have no saved address yet.</p>
+    <button type="button" class="btn-add-address" (click)="startAdding()">
+      <i class="bi bi-plus-lg"></i> Add Address
+    </button>
+  </ng-container>
+
+  <!-- Address card — view mode -->
+  <ng-container *ngIf="!isLoading && currentAddress && !isEditing && !isAdding">
+    <div class="address-card-container">
+      <div class="address-badge">Default Delivery Address</div>
+      <div class="address-card-body">
+        <div class="address-text-details">
+          <p class="address-line">{{ currentAddress.street }}</p>
+          <p class="address-line">{{ currentAddress.suburb }}</p>
+          <p class="address-line">{{ currentAddress.city }}, {{ currentAddress.postalCode }}</p>
+          <p class="address-line">{{ currentAddress.province }}</p>
+        </div>
+        <button type="button" class="btn-address-edit" (click)="startEditing()" aria-label="Edit Address">
+          <i class="bi bi-pencil"></i>
+        </button>
+      </div>
+    </div>
+  </ng-container>
+
+  <!-- Add / Edit form -->
+  <ng-container *ngIf="!isLoading && (isAdding || isEditing)">
+    <form [formGroup]="addressForm" (ngSubmit)="saveAddress()" class="address-mutation-form">
+      <div class="form-row-grid">
+
+        <div class="input-wrapper full-width">
+          <label class="input-label">Street Address</label>
+          <input type="text" formControlName="street" class="form-input-element"
+            placeholder="House number and street name" />
+        </div>
+
+        <div class="input-wrapper">
+          <label class="input-label">Suburb</label>
+          <input type="text" formControlName="suburb" class="form-input-element"
+            placeholder="Suburb" />
+        </div>
+
+        <div class="input-wrapper">
+          <label class="input-label">City</label>
+          <input type="text" formControlName="city" class="form-input-element"
+            placeholder="City" />
+        </div>
+
+        <div class="input-wrapper">
+          <label class="input-label">Province</label>
+          <select formControlName="province" class="form-input-element">
+            <option value="Gauteng">Gauteng</option>
+            <option value="Western Cape">Western Cape</option>
+            <option value="KwaZulu-Natal">KwaZulu-Natal</option>
+            <option value="Eastern Cape">Eastern Cape</option>
+            <option value="Free State">Free State</option>
+            <option value="Limpopo">Limpopo</option>
+            <option value="Mpumalanga">Mpumalanga</option>
+            <option value="North West">North West</option>
+            <option value="Northern Cape">Northern Cape</option>
+          </select>
+        </div>
+
+        <div class="input-wrapper">
+          <label class="input-label">Postal Code</label>
+          <input type="text" formControlName="postalCode" class="form-input-element"
+            placeholder="4-digit postal code" />
+        </div>
+
+      </div>
+
+      <div class="form-action-row">
+        <button type="submit" class="btn-action save" [disabled]="addressForm.invalid || isSaving">
+          {{ isSaving ? 'Saving...' : isAdding ? 'Save Address' : 'Update Address' }}
+        </button>
+        <button type="button" class="btn-action cancel" (click)="cancelForm()">Cancel</button>
+      </div>
+    </form>
+  </ng-container>
+</div>

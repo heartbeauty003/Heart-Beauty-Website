@@ -1,0 +1,159 @@
+<footer class="main-site-footer">
+
+  <div class="footer-newsletter-banner text-center">
+    <h4 class="newsletter-main-title">SIGN UP FOR OUR NEWSLETTER</h4>
+    <p class="newsletter-sub-title">Stay Glamourous. Subscribe to receive updates on new premium arrivals, exclusive styling guides, and secret collections delivered directly to your inbox.</p>
+
+    @if (!subscribeSuccess) {
+      <div class="newsletter-form-row d-flex justify-content-center align-items-center">
+        <div class="newsletter-input-wrapper">
+          <input
+            type="email"
+            [(ngModel)]="newsletterEmail"
+            placeholder="Enter your email address"
+            aria-label="Email address"
+            [disabled]="isSubscribing"
+          />
+        </div>
+        <button
+          type="button"
+          class="newsletter-subscribe-btn"
+          (click)="onSubscribe()"
+          [disabled]="!newsletterEmail || isSubscribing">
+          {{ isSubscribing ? 'SUBSCRIBING...' : 'SUBSCRIBE' }}
+        </button>
+      </div>
+
+      @if (subscribeError) {
+        <p class="newsletter-error-text">{{ subscribeError }}</p>
+      }
+    } @else {
+      <p class="newsletter-success-text">You're in! Thank you for subscribing to Heart Beauty.</p>
+    }
+  </div>
+
+  <div class="footer-straight-divider"></div>
+
+  <div class="footer-links-matrix-bg">
+
+    <div class="footer-columns-grid">
+
+      <div>
+        <h5 class="matrix-column-title">NAVIGATION</h5>
+        <ul class="matrix-links-pool">
+          <li><a routerLink="/" (click)="scrollToTop()">Home</a></li>
+          <li><a routerLink="/why-us" (click)="scrollToTop()">Why Us</a></li>
+          <li><a routerLink="/support" (click)="scrollToTop()">Support</a></li>
+          <li><a routerLink="/loyalty" (click)="scrollToTop()">Loyalty</a></li>
+          <li><a routerLink="/wishlist" (click)="scrollToTop()">Wishlist</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h5 class="matrix-column-title">CUSTOMER SERVICE</h5>
+        <ul class="matrix-links-pool">
+          <li><a [routerLink]="['/customer-service']" [fragment]="'how-to-buy'">How To Buy Hair Online</a></li>
+          <li><a [routerLink]="['/customer-service']" [fragment]="'contact'">Contact Us</a></li>
+          <li><a [routerLink]="['/customer-service']" [fragment]="'payment'">Payment Options</a></li>
+          <li><a [routerLink]="['/customer-service']" [fragment]="'loyalty'">Loyalty Program</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h5 class="matrix-column-title">LEGAL</h5>
+        <ul class="matrix-links-pool">
+          <li><a [routerLink]="['/legal']" [fragment]="'terms'">Terms Of Service</a></li>
+          <li><a [routerLink]="['/legal']" [fragment]="'returns'">Return Policy</a></li>
+          <li><a [routerLink]="['/legal']" [fragment]="'refunds'">Refund Policy</a></li>
+          <li><a [routerLink]="['/legal']" [fragment]="'delivery'">Delivery Policy</a></li>
+          <li><a [routerLink]="['/legal']" [fragment]="'privacy'">Privacy Policy</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h5 class="matrix-column-title">JOIN US</h5>
+        <ul class="matrix-links-pool">
+          <li><a routerLink="/register" (click)="scrollToTop()">Register</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="mobile-footer-accordion">
+
+      <div class="accordion-section">
+        <button class="accordion-header" (click)="toggleSection('navigation')">
+          NAVIGATION
+          <i class="bi" [ngClass]="openSections['navigation'] ? 'bi-dash' : 'bi-plus'"></i>
+        </button>
+        <div class="accordion-body" [ngClass]="{'open': openSections['navigation']}">
+          <ul>
+            <li><a routerLink="/" (click)="scrollToTop()">Home</a></li>
+            <li><a routerLink="/why-us" (click)="scrollToTop()">Why Us</a></li>
+            <li><a routerLink="/support" (click)="scrollToTop()">Support</a></li>
+            <li><a routerLink="/loyalty" (click)="scrollToTop()">Loyalty</a></li>
+            <li><a routerLink="/wishlist" (click)="scrollToTop()">Wishlist</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="accordion-section">
+        <button class="accordion-header" (click)="toggleSection('customer')">
+          CUSTOMER SERVICE
+          <i class="bi" [ngClass]="openSections['customer'] ? 'bi-dash' : 'bi-plus'"></i>
+        </button>
+        <div class="accordion-body" [ngClass]="{'open': openSections['customer']}">
+          <ul>
+            <li><a [routerLink]="['/customer-service']" [fragment]="'how-to-buy'">How To Buy Hair Online</a></li>
+            <li><a [routerLink]="['/customer-service']" [fragment]="'contact'">Contact Us</a></li>
+            <li><a [routerLink]="['/customer-service']" [fragment]="'payment'">Payment Options</a></li>
+            <li><a [routerLink]="['/customer-service']" [fragment]="'loyalty'">Loyalty Program</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="accordion-section">
+        <button class="accordion-header" (click)="toggleSection('legal')">
+          LEGAL
+          <i class="bi" [ngClass]="openSections['legal'] ? 'bi-dash' : 'bi-plus'"></i>
+        </button>
+        <div class="accordion-body" [ngClass]="{'open': openSections['legal']}">
+          <ul>
+            <li><a [routerLink]="['/legal']" [fragment]="'terms'">Terms Of Service</a></li>
+            <li><a [routerLink]="['/legal']" [fragment]="'returns'">Return Policy</a></li>
+            <li><a [routerLink]="['/legal']" [fragment]="'refunds'">Refund Policy</a></li>
+            <li><a [routerLink]="['/legal']" [fragment]="'delivery'">Delivery Policy</a></li>
+            <li><a [routerLink]="['/legal']" [fragment]="'privacy'">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="accordion-section">
+        <button class="accordion-header" (click)="toggleSection('joinus')">
+          JOIN US
+          <i class="bi" [ngClass]="openSections['joinus'] ? 'bi-dash' : 'bi-plus'"></i>
+        </button>
+        <div class="accordion-body" [ngClass]="{'open': openSections['joinus']}">
+          <ul>
+            <li><a routerLink="/register" (click)="scrollToTop()">Register</a></li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="matrix-bottom-closure">
+      <h6 class="social-hub-header">SHARE WITH US</h6>
+
+      <div class="social-vector-strip d-flex justify-content-center gap-4">
+        <a href="https://www.instagram.com/heartbeauty003/" aria-label="instagram"><i class="bi bi-instagram"></i></a>
+        <a href="https://za.pinterest.com/heartbeauty003/?actingBusinessId=1112670789096170068" aria-label="Pinterest"><i class="bi bi-pinterest"></i></a>
+        <a href="https://www.tiktok.com/@heartbeauty_world?is_from_webapp=1&sender_device=pc" aria-label="TikTok"><i class="bi bi-tiktok"></i></a>
+        <a href="http://www.youtube.com/@HeartBeauty-l1u" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+      </div>
+
+      <p class="corporate-copy-tag">© 2026 Heart Beauty. All Rights Reserved.</p>
+    </div>
+
+  </div>
+</footer>

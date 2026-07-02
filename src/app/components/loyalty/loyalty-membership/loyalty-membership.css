@@ -1,0 +1,132 @@
+:host {
+  display: block;
+}
+
+/* Core component Layout */
+.loyalty-card-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 380px; /* Card scales naturally below this point */
+  margin: 0 auto;
+}
+
+/* 3D Canvas wrapper + Container Query context */
+.card-perspective-wrapper {
+  width: 100%;
+  aspect-ratio: 1.586 / 1;
+  perspective: 1200px;
+  cursor: pointer;
+  container-type: inline-size; /* CRITICAL: Allows cqi to scale proportionally */
+}
+
+/* Card Container with Preserve 3D */
+.loyalty-card-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.loyalty-card-inner.is-flipped {
+  transform: rotateY(180deg);
+}
+
+.card-face {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 5.26cqi;
+  padding: 6.31cqi 7.36cqi;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  box-shadow: 0 6.57cqi 13.15cqi rgba(184,90,103,0.35), 0 2.1cqi 5.26cqi rgba(184,90,103,0.25), inset 0 0 0 1px rgba(255,255,255,0.12);
+  background: linear-gradient(160deg, #c96b7a 0%, #b85a67 35%, #9e3f50 70%, #7a2d3a 100%);
+  overflow: hidden;
+}
+
+.card-face::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, transparent 50%, rgba(0,0,0,0.1) 100%);
+  border-radius: 5.26cqi;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.card-front {
+  z-index: 1;
+  transform: rotateY(0deg);
+}
+
+/* ALL FACETS CONVERTED TO CQI SO THEY SCALE PERFECTLY */
+.facet {
+  position: absolute;
+  pointer-events: none;
+}
+.facet-1 { width: 57.89cqi; height: 57.89cqi; background: linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,255,255,0.05)); clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); top: -15.78cqi; right: -10.52cqi; transform: rotate(20deg); }
+.facet-2 { width: 42.10cqi; height: 42.10cqi; background: linear-gradient(135deg, rgba(255,255,255,0.15), rgba(255,255,255,0.03)); clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); top: 5.26cqi; right: 15.78cqi; transform: rotate(45deg); }
+.facet-3 { width: 34.21cqi; height: 34.21cqi; background: linear-gradient(135deg, rgba(0,0,0,0.1), rgba(0,0,0,0.03)); clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); bottom: -7.89cqi; left: -5.26cqi; transform: rotate(15deg); }
+.facet-4 { width: 26.31cqi; height: 26.31cqi; background: rgba(255,255,255,0.06); clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); bottom: 7.89cqi; right: 21.05cqi; transform: rotate(30deg); }
+.facet-5 { width: 21.05cqi; height: 21.05cqi; background: rgba(0,0,0,0.1); clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); top: 13.15cqi; left: 10.52cqi; transform: rotate(10deg); }
+
+.card-top { display: flex; justify-content: space-between; align-items: flex-start; position: relative; z-index: 1; }
+.card-logo-icon { height: 10cqi; width: auto; object-fit: contain; filter: brightness(0) invert(1) drop-shadow(0 0.52cqi 1.05cqi rgba(0,0,0,0.3)); }
+
+.card-number-area { 
+  position: relative; 
+  z-index: 2; 
+  margin-top: 5.78cqi; 
+  margin-bottom: 5.78cqi; 
+  text-align: left;
+}
+.loyalty-brand-text { 
+  color: #fcb4cb;
+  font-size: 6.73cqi; /* Replaced fixed rem with scaling unit */
+  font-weight: 700;
+  font-family: 'Times New Roman', Times, serif;
+  background: linear-gradient(135deg, #ffd9e6 0%, #fcb4cb 30%, #f5839e 50%, #fcb4cb 70%, #ffd9e6 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 3.15cqi rgba(252, 180, 203, 0.5);
+  white-space: nowrap;
+  line-height: 1.4;
+  display: inline-block;
+  padding-bottom: 1.05cqi;
+  overflow: visible;
+}
+
+.card-bottom { display: flex; justify-content: space-between; align-items: flex-end; position: relative; z-index: 1; }
+.card-name { font-size: 4cqi; font-weight: 500; letter-spacing: 0.06em; color: rgba(255,255,255,0.95); text-transform: uppercase; }
+.signup-date { font-size: 2.94cqi; font-weight: 500; letter-spacing: 0.04em; color: rgba(255,255,255,0.75); font-family: 'Courier New', Courier, monospace; white-space: nowrap; }
+
+/* BACK STYLING SCALED IN CQI */
+.card-back { transform: rotateY(180deg); padding: 0 0 6.31cqi 0; justify-content: flex-start; gap: 5.26cqi; }
+.magnetic-stripe { width: 100%; height: 11.57cqi; background: #151515; margin-top: 6.31cqi; box-shadow: inset 0 0.52cqi 1.05cqi rgba(0,0,0,0.5); }
+.signature-container { display: flex; align-items: center; padding: 0 7.89cqi; width: 100%; }
+.signature-strip { flex-grow: 1; height: 10cqi; background: rgba(255, 255, 255, 0.85); display: flex; align-items: center; padding-left: 3.68cqi; box-shadow: inset 0.52cqi 0.52cqi 1.05cqi rgba(0,0,0,0.15); }
+.signature-placeholder { font-family: 'Brush Script MT', cursive, sans-serif; font-size: 5.68cqi; color: #333333; }
+.cvv-box { background: #ffffff; height: 10cqi; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 0 3.68cqi; border-left: 1px solid #dddddd; }
+.member-number-label { font-size: 2.1cqi; color: #888888; font-weight: 700; }
+.member-number-value { font-family: 'Courier New', Courier, monospace; font-size: 3.57cqi; font-weight: 700; color: #111111; }
+.card-back-bottom { margin-top: auto; padding: 0 7.89cqi; display: flex; align-items: center; gap: 5.26cqi; }
+.card-logo-icon-back { height: 8.42cqi; width: auto; object-fit: contain; filter: brightness(0) invert(1) opacity(0.8); }
+.card-terms { font-size: 2.31cqi; color: rgba(255, 255, 255, 0.65); line-height: 1.4; margin: 0; }
+
+/* Action Button (keeps standard units so it remains clickable/readable outside the scaling card) */
+.card-action-text { background: none; border: none; margin-top: 18px; font-size: 0.8rem; font-weight: 600; color: #b85a67; text-transform: uppercase; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; }
+.action-chevron { font-size: 0.75rem; transition: transform 0.5s; }
+.action-chevron.chevron-flipped { transform: rotate(180deg); }
+
+/* ONLY ONE MEDIA QUERY NEEDED - AND NO INTERNAL CARD RESETS REQUIRED */
+@media (max-width: 600px) {
+  .loyalty-card-container { width: 100%; padding: 0 16px; box-sizing: border-box; }
+}
