@@ -138,4 +138,3 @@ dist
 # Angular
 .angular/
 dist/
-package-lock.json
